@@ -1,0 +1,33 @@
+@(user: models.UserModel)
+
+<div id="userbox" class="userbox">
+    <a href="#" data-toggle="dropdown">
+        <figure class="profile-picture">
+        @if((user.userProfilePhoto != null) && (user.userProfilePhoto.photo != null)){
+                <img src="/assets/images/users/@user.id/@user.userProfilePhoto.photo" alt="@user.email" class="img-circle" data-lock-picture="/assets/images/users/@user.id/assets/images/users/@user.id/@user.userProfilePhoto.photo">
+        }
+        </figure>
+        <div class="profile-info" data-lock-name="John Doe" data-lock-email="@user.email">
+            @if((user.userProfile != null) && (user.userProfile.firstname != null) && (user.userProfile.lastname != null)){
+                <span class="name">@user.userProfile.firstname @user.userProfile.lastname</span>
+            }
+        </div>
+
+        <i class="fa custom-caret"></i>
+    </a>
+
+    <div class="dropdown-menu">
+        <ul class="list-unstyled">
+            <li class="divider"></li>
+            <li>
+                <a role="menuitem" tabindex="-1" href="/user"><i class="fa fa-user"></i> My Profile</a>
+            </li>
+            <li>
+                <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
+            </li>
+            <li>
+                <a role="menuitem" tabindex="-1" href="/user/logout"><i class="fa fa-power-off"></i> Logout</a>
+            </li>
+        </ul>
+    </div>
+</div>

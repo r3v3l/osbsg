@@ -1,0 +1,198 @@
+@(
+user: models.UserModel, messages: Map[String, String], contacts: List[models.ContactModel],
+businessCards: List[models.BusinessCardModel], cards: List[models.BusinessCardModel]
+)
+
+@import helper._
+
+@main(""){
+<!doctype html>
+<html class="fixed">
+<head>
+
+    @tableHeader()
+
+</head>
+<body>
+<section class="body">
+
+    <!-- start: header -->
+    <header class="header">
+        @adminLogo()
+
+        <!-- start: search & user box -->
+        <div class="header-right">
+
+            @adminSearch()
+
+            <span class="separator"></span>
+
+            @adminNotifications(contacts, cards)
+
+            <span class="separator"></span>
+
+            @adminUser(user)
+            <!-- end: search & user box -->
+        </div>
+    </header>
+    <!-- end: header -->
+
+    <div class="inner-wrapper">
+        <!-- start: sidebar -->
+        @adminNavigation()
+        <!-- end: sidebar -->
+
+        <section role="main" class="content-body">
+            <header class="page-header">
+                <h2>All Contacts</h2>
+
+                <div class="right-wrapper pull-right">
+                    <ol class="breadcrumbs">
+                        <li>
+                            <a href="index.html">
+                                <i class="fa fa-home"></i>
+                            </a>
+                        </li>
+                        <li><span>All contacts</span></li>
+                    </ol>
+
+                    <a class="sidebar-right-toggle"> <!--data-open="sidebar-right"><i class="fa fa-chevron-left"></i>--></a>
+                </div>
+            </header>
+
+            <!-- start: page -->
+            <section class="panel">
+                <header class="panel-heading">
+                    <div class="panel-actions">
+                        <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                        <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                    </div>
+
+                    <h2 class="panel-title">All business cards</h2>
+                    @if(messages.get("formDanger") != null){
+                        <div class="alert alert-success" role="alert">@messages.get("formDanger")</div>
+                    }
+                    @if(messages.get("formWarning") != null){
+                        <div class="alert alert-Warning" role="alert">@messages.get("formWarning")</div>
+                    }
+                    @if(messages.get("formSuccess") != null){
+                        <div class="alert alert-success" role="alert">@messages.get("formSuccess")</div>
+                    }
+                </header>
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped mb-none" id="datatable-default">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Lastname</th>
+                            <th>Firstname</th>
+                            <th>E-mail</th>
+                            <th class="center hidden-xs">Phone</th>
+                            <th class="center hidden-xs">Company</th>
+                            <th class="center hidden-xs">Address</th>
+                            <th class="center hidden-xs">Creation Date</th>
+                            <th class="center hidden-xs">Update date</th>
+                            <th class="center hidden-xs">Available Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @for(card <- businessCards){
+                        <tr>
+                            <td>@card.id</td>
+                            <td>@card.firstname</td>
+                            <td>@card.lastname</td>
+                            <td>@card.email</td>
+                            <td class="center hidden-xs">@card.phone/td>
+                            <td class="center hidden-xs">@card.company</td>
+                            <td class="center hidden-xs">@card.address</td>
+                            <td class="center hidden-xs">@card.creationDate</td>
+                            <td class="center hidden-xs">@card.updateDate</td>
+                            <td class="center hidden-xs">
+                                <a href="/business-card/get-card/@card.id" title="Get business card @card.id"><i class="fa fa-eye"></i></a>
+                                <a href="/business-card/update-business-card/@card.id" title="Update business card @card.id"><i class="fa fa-pencil"></i></a>
+                                <a href="/contacts/delete-card/@card.id" title="Get business card @card.id"><i class="fa fa-close"></i></a>
+                            </td>
+                        </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- end: page -->
+        </section>
+    </div>
+
+    <aside id="sidebar-right" class="sidebar-right">
+        <div class="nano">
+            <div class="nano-content">
+                <a href="#" class="mobile-close visible-xs">
+                    Collapse <i class="fa fa-chevron-right"></i>
+                </a>
+
+                <div class="sidebar-right-wrapper">
+
+                    <div class="sidebar-widget widget-calendar">
+                        <h6>Upcoming Tasks</h6>
+                        <div data-plugin-datepicker data-plugin-skin="dark" ></div>
+
+                        <ul>
+                            <li>
+                                <time datetime="2016-04-19T00:00+00:00">04/19/2016</time>
+                                <span>Company Meeting</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-widget widget-friends">
+                        <h6>Friends</h6>
+                        <ul>
+                            <li class="status-online">
+                                <figure class="profile-picture">
+                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                </figure>
+                                <div class="profile-info">
+                                    <span class="name">Joseph Doe Junior</span>
+                                    <span class="title">Hey, how are you?</span>
+                                </div>
+                            </li>
+                            <li class="status-online">
+                                <figure class="profile-picture">
+                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                </figure>
+                                <div class="profile-info">
+                                    <span class="name">Joseph Doe Junior</span>
+                                    <span class="title">Hey, how are you?</span>
+                                </div>
+                            </li>
+                            <li class="status-offline">
+                                <figure class="profile-picture">
+                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                </figure>
+                                <div class="profile-info">
+                                    <span class="name">Joseph Doe Junior</span>
+                                    <span class="title">Hey, how are you?</span>
+                                </div>
+                            </li>
+                            <li class="status-offline">
+                                <figure class="profile-picture">
+                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                </figure>
+                                <div class="profile-info">
+                                    <span class="name">Joseph Doe Junior</span>
+                                    <span class="title">Hey, how are you?</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </aside>
+</section>
+
+@tableFooter()
+</body>
+</html>
+}

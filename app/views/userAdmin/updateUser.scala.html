@@ -1,0 +1,326 @@
+@(
+messages: Map[String, String], user: models.UserModel, statuses: List[models.StatusModel], roles: List[models.RoleModel],
+userStatuses: Map[String, String], userRoles: Map[String, String], currentUser: models.UserModel,
+contacts: List[models.ContactModel], cards: List[models.BusinessCardModel]
+)
+
+@import helper._
+
+@main(""){
+<!doctype html>
+<html class="fixed">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    @formHeader()
+
+</head>
+<body>
+<section class="body">
+
+    <!-- start: header -->
+    <header class="header">
+        @adminLogo()
+
+        <!-- start: search & user box -->
+        <div class="header-right">
+
+            @adminSearch()
+
+            <span class="separator"></span>
+
+            @adminNotifications(contacts, cards)
+
+            <span class="separator"></span>
+
+            @adminUser(currentUser)
+        </div>
+    </header>
+        <!-- end: search & user box -->
+    <!-- end: header -->
+
+    <div class="inner-wrapper">
+
+        @adminNavigation()
+
+        <section role="main" class="content-body">
+            <header class="page-header">
+                <h2>Update user</h2>
+                <div class="right-wrapper pull-right">
+                    <ol class="breadcrumbs">
+                        <li>
+                            <a href="index.html">
+                                <i class="fa fa-home"></i>
+                            </a>
+                        </li>
+                        <li><span><a href="/user-admin">Users admin</a></span></li>
+                        <li><span>Update user</span></li>
+                    </ol>
+
+                    <a class="sidebar-right-toggle" <!--data-open="sidebar-right"--><!--<i class="fa fa-chevron-left"></i>--></a>
+                </div>
+            </header>
+
+            <!-- start: page -->
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="form" method="post" action="/user-admin/create-new-user" class="form-horizontal">
+                        @CSRF.formField
+                        <section class="panel">
+                            <header class="panel-heading">
+                                <div class="panel-actions">
+                                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                                </div>
+
+                                <h2 class="panel-title">Update user @user.email</h2>
+                                <p class="panel-subtitle">
+                                    You can create new app user here.
+                                </p>
+                                @if(messages.get("userFormDanger") != null){
+                                <div class="alert alert-danger" role="alert">
+                                    @messages.get("userFormDanger")
+                                </div>
+                                }
+                                @if(messages.get("userFormWarning") != null){
+                                <div class="alert alert-warning" role="alert">
+                                    @messages.get("userFormWarning")
+                                </div>
+                                }
+                                @if(messages.get("userFormSuccess") != null){
+                                <div class="alert alert-success" role="alert">
+                                    @messages.get("userFormSuccess")
+                                </div>
+                                }
+                            </header>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Email <span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+													<span class="input-group-addon">
+														<i class="fa fa-envelope"></i>
+													</span>
+                                            <input type="email" name="email" class="form-control" placeholder="eg.: email@@email.com" required autocomplete="off" value="@user.email"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        @if(messages.get("emailDanger") != null){
+                                        <div class="alert alert-danger" role="alert">
+                                            @messages.get("emailPasswordDanger")
+                                        </div>
+                                        }
+                                        @if(messages.get("emailWarning") != null){
+                                        <div class="alert alert-warning" role="alert">
+                                            @messages.get("emailWarning")
+                                        </div>
+                                        }
+                                        @if(messages.get("emailSuccess") != null){
+                                        <div class="alert alert-success" role="alert">
+                                            @messages.get("emailSuccess")
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Password <span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+													<span class="input-group-addon">
+														<i class="fa fa-lock"></i>
+													</span>
+                                            <input type="password" name="password" class="form-control" required autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        @if(messages.get("passwordDanger") != null){
+                                        <div class="alert alert-danger" role="alert">
+                                            @messages.get("passwordDanger")
+                                        </div>
+                                        }
+                                        @if(messages.get("passwordWarning") != null){
+                                        <div class="alert alert-warning" role="alert">
+                                            @messages.get("passwordWarning")
+                                        </div>
+                                        }
+                                        @if(messages.get("passwordSuccess") != null){
+                                        <div class="alert alert-success" role="alert">
+                                            @messages.get("passwordSuccess")
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Confirm Password <span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+													<span class="input-group-addon">
+														<i class="fa fa-lock"></i>
+													</span>
+                                            <input type="password" name="confirmPassword" class="form-control" required autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        @if(messages.get("confirmPasswordDanger") != null){
+                                        <div class="alert alert-danger" role="alert">
+                                            @messages.get("confirmPasswordDanger")
+                                        </div>
+                                        }
+                                        @if(messages.get("confirmPasswordWarning") != null){
+                                        <div class="alert alert-warning" role="alert">
+                                            @messages.get("confirmPasswordWarning")
+                                        </div>
+                                        }
+                                        @if(messages.get("confirmPasswordSuccess") != null){
+                                        <div class="alert alert-success" role="alert">
+                                            @messages.get("confirmPasswordSuccess")
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Select roles <span class="required">*</span></label>
+                                    <div class="col-sm-3">
+                                        @for(role <- roles){
+                                            <div class="input-group">
+                                                <div class="checkbox-custom checkbox-default">
+                                                    @if(userRoles.get(role.name) != null){
+                                                    <input name="@role.name" id="@role.name" type="checkbox" value="@role.name" checked>
+                                                    } else {
+                                                        <input name="@role.name" id="@role.name" type="checkbox" value="@role.name">
+                                                    }
+                                                    <label for="@role.name">@role.name</label>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <label class="col-sm-3 control-label">Select statuses <span class="required">*</span></label>
+                                    <div class="col-sm-3">
+                                        @for(status <- statuses){
+                                        <div class="input-group">
+                                            <div class="checkbox-custom checkbox-default">
+                                                @if(userStatuses.get(status.name) != null){
+                                                    <input name="@status.name" id="@status.name" type="checkbox" value="@status.name" checked>
+                                                } else {
+                                                    <input name="@status.name" id="@status.name" type="checkbox" value="@status.name">
+                                                }
+                                                <label for="@status.name">@status.name</label>
+                                            </div>
+                                        </div>
+                                        }
+                                    </div>
+                                    <div class="col-sm-9">
+                                        @if(messages.get("statusesDanger") != null){
+                                        <div class="alert alert-danger" role="alert">
+                                            @messages.get("statusesDanger")
+                                        </div>
+                                        }
+                                        @if(messages.get("statusesWarning") != null){
+                                        <div class="alert alert-warning" role="alert">
+                                            @messages.get("statusesWarning")
+                                        </div>
+                                        }
+                                        @if(messages.get("statusesSuccess") != null){
+                                        <div class="alert alert-success" role="alert">
+                                            @messages.get("statusesSuccess")
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="panel-footer">
+                                <div class="row">
+                                    <div class="col-sm-9 col-sm-offset-3">
+                                        <button class="btn btn-primary">Create new user</button>
+                                        <button type="reset" class="btn btn-default">Reset form</button>
+                                    </div>
+                                </div>
+                            </footer>
+                        </section>
+                    </form>
+                </div>
+            </div>
+
+            <!-- end: page -->
+        </section>
+    </div>
+
+    <aside id="sidebar-right" class="sidebar-right">
+        <div class="nano">
+            <div class="nano-content">
+                <a href="#" class="mobile-close visible-xs">
+                    Collapse <i class="fa fa-chevron-right"></i>
+                </a>
+
+                <div class="sidebar-right-wrapper">
+
+                    <div class="sidebar-widget widget-calendar">
+                        <h6>Upcoming Tasks</h6>
+                        <div data-plugin-datepicker data-plugin-skin="dark" ></div>
+
+                        <ul>
+                            <li>
+                                <time datetime="2016-04-19T00:00+00:00">04/19/2016</time>
+                                <span>Company Meeting</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-widget widget-friends">
+                        <h6>Friends</h6>
+                        <ul>
+                            <li class="status-online">
+                                <figure class="profile-picture">
+                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                </figure>
+                                <div class="profile-info">
+                                    <span class="name">Joseph Doe Junior</span>
+                                    <span class="title">Hey, how are you?</span>
+                                </div>
+                            </li>
+                            <li class="status-online">
+                                <figure class="profile-picture">
+                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                </figure>
+                                <div class="profile-info">
+                                    <span class="name">Joseph Doe Junior</span>
+                                    <span class="title">Hey, how are you?</span>
+                                </div>
+                            </li>
+                            <li class="status-offline">
+                                <figure class="profile-picture">
+                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                </figure>
+                                <div class="profile-info">
+                                    <span class="name">Joseph Doe Junior</span>
+                                    <span class="title">Hey, how are you?</span>
+                                </div>
+                            </li>
+                            <li class="status-offline">
+                                <figure class="profile-picture">
+                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                </figure>
+                                <div class="profile-info">
+                                    <span class="name">Joseph Doe Junior</span>
+                                    <span class="title">Hey, how are you?</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </aside>
+</section>
+
+@formFooter()
+
+</body>
+</html>
+}

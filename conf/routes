@@ -1,0 +1,94 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index
+# An example controller showing how to use dependency injection
+GET     /count                      controllers.CountController.count
+# An example controller showing how to write asynchronous code
+GET     /message                    controllers.AsyncController.message
+#Application
+#User api
+POST    /api/signup                                             controllers.ApplicationController.signup
+POST    /api/signin                                             controllers.ApplicationController.signin
+POST    /api/forgot                                             controllers.ApplicationController.forgot
+#User
+GET     /api/user                                               controllers.UserController.getUser
+POST    /api/user/change-email                                  controllers.UserController.changeEmail
+POST    /api/user/change-password                               controllers.UserController.changePassword
+#Status
+GET     /api/status/get-all                                     controllers.StatusController.getAll
+GET     /api/status/get-status/:name                            controllers.StatusController.getStatus(name: String)
+POST    /api/status/create                                      controllers.StatusController.create
+POST    /api/status/update/:name                                controllers.StatusController.update(name: String)
+GET     /api/status/delete/:name                                controllers.StatusController.delete(name: String)
+#Role
+GET     /api/role/get-all                                       controllers.RoleController.getAll
+GET     /api/role/get-role/:name                                controllers.RoleController.getRole(name: String)
+POST    /api/role/create                                        controllers.RoleController.createRole
+POST    /api/role/update/:name                                  controllers.RoleController.updateRole(name: String)
+GET     /api/role/delete/:name                                  controllers.RoleController.deleteRole(name: String)
+#User Admin
+GET     /api/user-admin/get-all                                 controllers.UserAdminController.getAll()
+GET     /api/user-admin/get-users-page/:page/:size              controllers.UserAdminController.getPage(page: Integer, size: Integer)
+GET     /api/user-admin/get-user/:email                         controllers.UserAdminController.getUser(email: String)
+POST    /api/user-admin/create                                  controllers.UserAdminController.createUser()
+POST    /api/user-admin/update/:email                           controllers.UserAdminController.updateUser(email: String)
+GET     /api/user-admin/delete-user/:email                      controllers.UserAdminController.deleteUser(email: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+#HTML User
+GET     /user/register-new-account                              controllers.user.SignUpController.signUp
+POST    /user/register-new-account                              controllers.user.SignUpController.create
+GET     /user/login                                             controllers.user.SignInController.signIn
+POST    /user/login                                             controllers.user.SignInController.auth
+GET     /user/remind-password                                   controllers.user.FormindController.forgot
+POST    /user/remind-password                                   controllers.user.FormindController.remind
+GET     /user/logout                                            controllers.user.SignInController.logout
+GET     /user                                                   controllers.user.UserController.getUser
+POST    /user/update-email                                      controllers.user.UserController.updateEmail
+POST    /user/update-password                                   controllers.user.UserController.updatePassword
+
+#HTML Profile
+GET     /user/profile                                           controllers.user.UserProfileController.getProfile
+POST    /user/profile/create-profile                            controllers.user.UserProfileController.createProfile
+POST    /user/profile/update-profile                            controllers.user.UserProfileController.updateProfile
+POST    /user/profile/create-profile-photo                      controllers.user.UserProfileController.createPhoto
+POST    /user/profile/update-profile-photo                      controllers.user.UserProfileController.updatePhoto
+
+#HTML user admin
+GET     /user-admin                                             controllers.userAdmin.UserAdminController.getUsers
+GET     /user-admin/add-new-user                                controllers.userAdmin.CreateUserController.addUser
+POST    /user-admin/create-new-user                             controllers.userAdmin.CreateUserController.createUser
+GET     /user-admin/edit-user/:email                            controllers.userAdmin.UpdateUserController.editUser(email: String)
+POST    /user-admin/edit-user/:email                            controllers.userAdmin.UpdateUserController.updateUser(email: String)
+GET     /user-admin/delete-user/:email                          controllers.userAdmin.UserAdminController.deleteUser(email: String)
+
+#HTML contact
+POST    /contact/create-contact-message                         controllers.contact.ContactController.addMessage
+GET     /contacts/get-all                                       controllers.contact.ContactController.getMessages
+GET     /contacts/get-contact/:id                               controllers.contact.ResponseContactController.getContact(id: Long)
+POST    /contacts/response/:id                                  controllers.contact.ResponseContactController.generateResponse(id: Long)
+
+#HTML Newsletter
+POST   /newsletter/add-email                                    controllers.newsletter.NewsletterController.createEmail
+GET    /newsletter/get-all-emails                               controllers.newsletter.NewsletterController.getAll
+
+#HTML Business Card
+
+GET     /business-card/get-all                                  controllers.businessCard.BusinessCardController.getAll
+GET     /business-card/add-new-business-card                    controllers.businessCard.BusinessCardController.addCard
+POST    /business-card/add-new-business-card                    controllers.businessCard.BusinessCardController.createCard
+GET     /business-card/update-business-card/:id                 controllers.businessCard.BusinessCardController.editCard(id: Long)
+POST    /business-card/update-business-card/:id                 controllers.businessCard.BusinessCardController.updateCard(id: Long)
+GET     /business-card/get-card/:id                             controllers.businessCard.BusinessCardController.getCard(id: Long)
+GET     /business-card/delete-card/:id                          controllers.businessCard.BusinessCardController.deleteCard(id: Long)
+#HTML Company
+GET     /company                                                controllers.company.CompanyController.getCompany()
+POST    /company/create-new-company                             controllers.company.CompanyController.createCompany()
+POST    /company/update-company                                 controllers.company.CompanyController.updateCompany()
+#HTML Dashboard
+GET     /dashboard                                              controllers.dashboard.DashboardController.dashboard

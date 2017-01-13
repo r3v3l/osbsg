@@ -1,0 +1,221 @@
+@(
+contact: models.ContactModel, user: models.UserModel, messages: Map[String, String], contacts: List[models.ContactModel],
+cards: List[models.BusinessCardModel]
+)
+
+@import helper._
+
+@main(""){
+<!doctype html>
+<html class="fixed">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    @formHeader()
+
+</head>
+<body>
+<section class="body">
+
+    <!-- start: header -->
+    <header class="header">
+        @adminLogo()
+
+        <!-- start: search & user box -->
+        <div class="header-right">
+
+            @adminSearch()
+
+            <span class="separator"></span>
+
+            @adminNotifications(contacts, cards)
+
+            <span class="separator"></span>
+
+            @adminUser(user)
+
+        <!-- end: search & user box -->
+        </div>
+    </header>
+    <!-- end: header -->
+
+    <div class="inner-wrapper">
+
+        @adminNavigation()
+
+        <section role="main" class="content-body">
+            <header class="page-header">
+                @if(contact != null){
+                    <h2>Response @contact.name</h2>
+                } else {
+                    <h2>Response</h2>
+                }
+                <div class="right-wrapper pull-right">
+                    <ol class="breadcrumbs">
+                        <li>
+                            <a href="index.html">
+                                <i class="fa fa-home"></i>
+                            </a>
+                        </li>
+                        <li><span>Contacts</span></li>
+                        @if(contact != null){
+                            <li><span>Response @contact.name</span></li>
+                        } else {
+                            <li><span>Response</span></li>
+                        }
+                    </ol>
+
+                    <a class="sidebar-right-toggle"> <!--data-open="sidebar-right"--><!--<i class="fa fa-chevron-left"></i>--></a>
+                </div>
+            </header>
+
+            <!-- start: page -->
+            <div class="row">
+                <div class="col-md-12">
+                    @if(contact.responseContact != null){
+                    }else {
+                        <form id="form" method="post" action="/contacts/response/@contact.id" class="form-horizontal">
+                    }
+                        @CSRF.formField
+                        <section class="panel">
+                            <header class="panel-heading">
+                                <div class="panel-actions">
+                                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                                </div>
+
+                                <h2 class="panel-title">Response @contact.name</h2>
+                                <p class="panel-subtitle">
+                                    You can response your potential customer here.
+                                </p>
+                                @if(messages.get("formDanger") != null){
+                                    <div class="alert alert-danger" role="alert">
+                                        @messages.get("formDanger")
+                                    </div>
+                                }
+                                @if(messages.get("formWarning") != null){
+                                    <div class="alert alert-warning" role="alert">
+                                        @messages.get("formWarning")
+                                    </div>
+                                }
+                                @if(messages.get("formSuccess") != null){
+                                    <div class="alert alert-success" role="alert">
+                                        @messages.get("formSuccess")
+                                    </div>
+                                }
+                            </header>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Create response <span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+													<span class="input-group-addon">
+														<i class="fa fa-user"></i>
+													</span>
+                                            @if(contact.responseContact != null){
+                                                <textarea name="response" class="form-control" rows="3" id="textareaAutosize" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;" disabled="">@contact.responseContact.response</textarea>
+                                            } else {
+                                                <textarea name="response" class="form-control" rows="3" id="textareaAutosize" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;"></textarea>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="panel-footer">
+                                <div class="row">
+                                    <div class="col-sm-9 col-sm-offset-3">
+                                        <button class="btn btn-primary">Response to your customer @contact.name</button>
+                                        <button type="reset" class="btn btn-default">Reset form</button>
+                                    </div>
+                                </div>
+                            </footer>
+                        </section>
+                    </form>
+                </div>
+            </div>
+            <!-- end: page -->
+        </section>
+    </div>
+
+    <aside id="sidebar-right" class="sidebar-right">
+        <div class="nano">
+            <div class="nano-content">
+                <a href="#" class="mobile-close visible-xs">
+                    Collapse <i class="fa fa-chevron-right"></i>
+                </a>
+
+                <div class="sidebar-right-wrapper">
+
+                    <div class="sidebar-widget widget-calendar">
+                        <h6>Upcoming Tasks</h6>
+                        <div data-plugin-datepicker data-plugin-skin="dark" ></div>
+
+                        <ul>
+                            <li>
+                                <time datetime="2016-04-19T00:00+00:00">04/19/2016</time>
+                                <span>Company Meeting</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-widget widget-friends">
+                        <h6>Friends</h6>
+                        <ul>
+                            <li class="status-online">
+                                <figure class="profile-picture">
+                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                </figure>
+                                <div class="profile-info">
+                                    <span class="name">Joseph Doe Junior</span>
+                                    <span class="title">Hey, how are you?</span>
+                                </div>
+                            </li>
+                            <li class="status-online">
+                                <figure class="profile-picture">
+                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                </figure>
+                                <div class="profile-info">
+                                    <span class="name">Joseph Doe Junior</span>
+                                    <span class="title">Hey, how are you?</span>
+                                </div>
+                            </li>
+                            <li class="status-offline">
+                                <figure class="profile-picture">
+                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                </figure>
+                                <div class="profile-info">
+                                    <span class="name">Joseph Doe Junior</span>
+                                    <span class="title">Hey, how are you?</span>
+                                </div>
+                            </li>
+                            <li class="status-offline">
+                                <figure class="profile-picture">
+                                    <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+                                </figure>
+                                <div class="profile-info">
+                                    <span class="name">Joseph Doe Junior</span>
+                                    <span class="title">Hey, how are you?</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </aside>
+</section>
+
+@formFooter()
+
+</body>
+</html>
+}

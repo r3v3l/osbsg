@@ -1,0 +1,113 @@
+@(contacts: List[models.ContactModel], cards: List[models.BusinessCardModel])
+
+<ul class="notifications">
+    <li>
+        <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
+            <i class="fa fa-tasks"></i>
+            <span class="badge">@cards.size()</span>
+        </a>
+
+        <div class="dropdown-menu notification-menu large">
+            <div class="notification-title">
+                <span class="pull-right label label-default">3</span>
+                Business Cards
+            </div>
+
+            <div class="content">
+                <ul>
+                    @for(card <- cards){
+                        <li>
+                            <p class="clearfix mb-xs">
+                                <span class="message pull-left">@card.firstname @card.lastname</span>
+                                <span class="message pull-right text-dark">@card.company</span>
+                            </p>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </li>
+    <li>
+        <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
+            <i class="fa fa-envelope"></i>
+            <span class="badge">@contacts.size()</span>
+        </a>
+
+        <div class="dropdown-menu notification-menu">
+            <div class="notification-title">
+                <span class="pull-right label label-default">230</span>
+                Messages
+            </div>
+
+            <div class="content">
+                <ul>
+                    @for(contact <- contacts){
+                        <li>
+                            <a href="/contacts/get-contact/@contact.id" class="clearfix">
+                                <span class="title">@contact.name</span>
+                                <span class="message">@contact.message</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+
+                <hr />
+
+                <div class="text-right">
+                    <a href="/contacts/get-all" class="view-more">View All</a>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
+            <i class="fa fa-bell"></i>
+            <span class="badge">3</span>
+        </a>
+
+        <div class="dropdown-menu notification-menu">
+            <div class="notification-title">
+                <span class="pull-right label label-default">3</span>
+                Alerts
+            </div>
+
+            <div class="content">
+                <ul>
+                    <li>
+                        <a href="#" class="clearfix">
+                            <div class="image">
+                                <i class="fa fa-thumbs-down bg-danger"></i>
+                            </div>
+                            <span class="title">Server is Down!</span>
+                            <span class="message">Just now</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="clearfix">
+                            <div class="image">
+                                <i class="fa fa-lock bg-warning"></i>
+                            </div>
+                            <span class="title">User Locked</span>
+                            <span class="message">15 minutes ago</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="clearfix">
+                            <div class="image">
+                                <i class="fa fa-signal bg-success"></i>
+                            </div>
+                            <span class="title">Connection Restaured</span>
+                            <span class="message">10/10/2016</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <hr />
+
+                <div class="text-right">
+                    <a href="#" class="view-more">View All</a>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
