@@ -1,7 +1,7 @@
 package controllers.newsletter;
 
-import controllers.ApplicationController;
-import models.UserModel;
+import controllers.core.CoreResponseController;
+import models.core.UserModel;
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -10,37 +10,37 @@ import play.mvc.Result;
  */
 public class NewsletterMessageController extends Controller {
 
-    private ApplicationController applicationController = new ApplicationController();
+    private CoreResponseController responseController = new CoreResponseController();
 
     public Result youMustLoginFirst(){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "formWarning", "You must login first.", "/user/login"
         );
     }
 
     public Result invalidUserRole(UserModel currentUser){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "formWarning", "User " +currentUser.email+
                         " can not access this page. Please try again.", "/user"
         );
     }
 
     public Result formErrors(){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "newsletterFormDanger", "Errors occurred. Please try again.",
                 request().getHeader("refere")
         );
     }
 
     public Result emailExists(String email){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "newsletterFormWarning", "Email " +email+ " exists. Thanks.",
                 request().getHeader("referer")
         );
     }
 
     public Result emailCreated(String email){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "newsletterFormSuccess", "Email " +email+ " has been added to newsletter.",
                 request().getHeader("referer")
         );

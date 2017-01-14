@@ -2,7 +2,9 @@ name := """com.osbsg"""
 
 version := "0.1.19-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean)
+lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean).aggregate(core).dependsOn(core);
+
+lazy val core = project.in(file("modules/core"))
 
 scalaVersion := "2.11.7"
 
@@ -12,7 +14,8 @@ libraryDependencies ++= Seq(
   javaWs,
   filters,
   "com.typesafe.play" %% "play-mailer" % "5.0.0",
-  "org.apache.commons" % "commons-io" % "1.3.2"
+  "org.apache.commons" % "commons-io" % "1.3.2",
+  "org.postgresql" % "postgresql" % "9.4.1212"
 )
 
 playEbeanModels in Compile := Seq("models.*")

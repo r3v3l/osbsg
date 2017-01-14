@@ -1,7 +1,7 @@
 package controllers.contact;
 
-import controllers.ApplicationController;
-import models.ContactModel;
+import controllers.core.CoreResponseController;
+import models.core.ContactModel;
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -10,42 +10,42 @@ import play.mvc.Result;
  */
 public class ContactMessageController extends Controller {
 
-    private ApplicationController applicationController = new ApplicationController();
+    private CoreResponseController responseController = new CoreResponseController();
 
     public Result mustLoginFirst(){
-            return applicationController.createMessage(
+            return responseController.createMessage(
                     "formDanger", "You must log in first.", request().getHeader("referer")
             );
     }
 
     public Result invalidRole(){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "formDanger", "You must log in first.", request().getHeader("referer")
         );
     }
 
     public Result success(){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "formSuccess", "We have our message. Thanks.", "/"
         );
     }
 
     public Result contactNotFound(ContactModel contactModel){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "formDanger", "Contact " +contactModel.name+ " not found. Please try again.",
                 request().getHeader("referer")
         );
     }
 
     public Result responseFormErrors(){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "formDanger", "Errors occured. Please try again.",
                 request().getHeader("referer")
         );
     }
 
     public Result contactHasBeenUpdated(ContactModel contactModel){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "formSuccess", "Contact " +contactModel.name+ " has been updated.",
                 request().getHeader("referer")
         );

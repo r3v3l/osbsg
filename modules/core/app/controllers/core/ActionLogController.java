@@ -1,7 +1,7 @@
-package controllers;
+package controllers.core;
 
-import models.ActionLogModel;
-import models.UserModel;
+import models.core.ActionLogModel;
+import models.core.UserModel;
 import play.mvc.Controller;
 
 import java.util.Date;

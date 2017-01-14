@@ -1,5 +1,7 @@
 package models;
 
+import models.core.RoleModel;
+import models.core.StatusModel;
 import org.junit.Test;
 
 import java.util.ArrayList;

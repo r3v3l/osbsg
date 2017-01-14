@@ -1,6 +1,6 @@
-import models.RoleModel;
-import models.StatusModel;
-import models.UserModel;
+import models.core.RoleModel;
+import models.core.StatusModel;
+import models.core.UserModel;
 import play.Application;
 import play.GlobalSettings;
 

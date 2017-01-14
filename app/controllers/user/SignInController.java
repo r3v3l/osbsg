@@ -1,7 +1,7 @@
 package controllers.user;
 
-import controllers.ApplicationController;
-import models.UserModel;
+import controllers.core.CoreResponseController;
+import models.core.UserModel;
 import org.jetbrains.annotations.NotNull;
 import play.data.Form;
 import play.filters.csrf.AddCSRFToken;
@@ -51,7 +51,7 @@ public class SignInController extends Controller {
 
     @NotNull
     private Result createMessage(String messageName, String message) {
-        return ApplicationController.createResponse(
+        return CoreResponseController.createResponse(
                 "redirect", messageName, message,
                 "/user/login"
         );

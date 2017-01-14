@@ -1,5 +1,8 @@
 package models;
 
+import models.core.RoleModel;
+import models.core.StatusModel;
+import models.core.UserModel;
 import org.junit.Test;
 
 import java.util.Date;

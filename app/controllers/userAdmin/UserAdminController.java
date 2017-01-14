@@ -1,12 +1,12 @@
 package controllers.userAdmin;
 
-import models.BusinessCardModel;
-import models.ContactModel;
-import models.UserModel;
+import models.core.BusinessCardModel;
+import models.core.ContactModel;
+import models.core.UserModel;
 import play.filters.csrf.AddCSRFToken;
 import play.mvc.Controller;
 import play.mvc.Result;
-import services.RolesService;
+import services.core.RolesService;
 
 /**
  * Created by astolarski on 08.01.17.

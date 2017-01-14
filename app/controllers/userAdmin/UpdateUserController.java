@@ -1,13 +1,13 @@
 package controllers.userAdmin;
 
 import controllers.user.EmailController;
-import models.*;
+import models.core.*;
 import play.data.Form;
 import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
 import play.mvc.Controller;
 import play.mvc.Result;
-import services.RolesService;
+import services.core.RolesService;
 
 import java.util.HashMap;
 

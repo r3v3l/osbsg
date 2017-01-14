@@ -1,14 +1,14 @@
 package controllers.user;
 
-import controllers.FileUploadController;
-import models.*;
+import controllers.core.FileUploadController;
+import models.core.*;
 import play.data.Form;
 import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
-import services.RolesService;
+import services.core.RolesService;
 
 import java.io.File;
 import java.io.IOException;

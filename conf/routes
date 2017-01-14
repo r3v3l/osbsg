@@ -8,34 +8,6 @@ GET     /                           controllers.HomeController.index
 GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
 GET     /message                    controllers.AsyncController.message
-#Application
-#User api
-POST    /api/signup                                             controllers.ApplicationController.signup
-POST    /api/signin                                             controllers.ApplicationController.signin
-POST    /api/forgot                                             controllers.ApplicationController.forgot
-#User
-GET     /api/user                                               controllers.UserController.getUser
-POST    /api/user/change-email                                  controllers.UserController.changeEmail
-POST    /api/user/change-password                               controllers.UserController.changePassword
-#Status
-GET     /api/status/get-all                                     controllers.StatusController.getAll
-GET     /api/status/get-status/:name                            controllers.StatusController.getStatus(name: String)
-POST    /api/status/create                                      controllers.StatusController.create
-POST    /api/status/update/:name                                controllers.StatusController.update(name: String)
-GET     /api/status/delete/:name                                controllers.StatusController.delete(name: String)
-#Role
-GET     /api/role/get-all                                       controllers.RoleController.getAll
-GET     /api/role/get-role/:name                                controllers.RoleController.getRole(name: String)
-POST    /api/role/create                                        controllers.RoleController.createRole
-POST    /api/role/update/:name                                  controllers.RoleController.updateRole(name: String)
-GET     /api/role/delete/:name                                  controllers.RoleController.deleteRole(name: String)
-#User Admin
-GET     /api/user-admin/get-all                                 controllers.UserAdminController.getAll()
-GET     /api/user-admin/get-users-page/:page/:size              controllers.UserAdminController.getPage(page: Integer, size: Integer)
-GET     /api/user-admin/get-user/:email                         controllers.UserAdminController.getUser(email: String)
-POST    /api/user-admin/create                                  controllers.UserAdminController.createUser()
-POST    /api/user-admin/update/:email                           controllers.UserAdminController.updateUser(email: String)
-GET     /api/user-admin/delete-user/:email                      controllers.UserAdminController.deleteUser(email: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

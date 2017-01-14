@@ -1,10 +1,11 @@
 package services;
 
-import models.RoleModel;
-import models.StatusModel;
-import models.UserModel;
+import models.core.RoleModel;
+import models.core.StatusModel;
+import models.core.UserModel;
 import org.junit.Test;
 import play.test.WithApplication;
+import services.core.RolesService;
 
 import java.util.Date;
 

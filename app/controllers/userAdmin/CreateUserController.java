@@ -1,9 +1,7 @@
 package controllers.userAdmin;
 
-import controllers.ApplicationController;
 import controllers.user.EmailController;
-import models.*;
-import org.jetbrains.annotations.NotNull;
+import models.core.*;
 import play.data.Form;
 import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;

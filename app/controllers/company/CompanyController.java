@@ -1,16 +1,16 @@
 package controllers.company;
 
 import controllers.user.UserProfileMessagesController;
-import models.BusinessCardModel;
-import models.CompanyModel;
-import models.ContactModel;
-import models.UserModel;
+import models.core.BusinessCardModel;
+import models.core.CompanyModel;
+import models.core.ContactModel;
+import models.core.UserModel;
 import play.data.Form;
 import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
 import play.mvc.Controller;
 import play.mvc.Result;
-import services.RolesService;
+import services.core.RolesService;
 
 import java.util.Date;
 import java.util.List;

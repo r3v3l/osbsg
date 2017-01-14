@@ -1,4 +1,4 @@
-package models;
+package models.core;
 
 import com.avaje.ebean.Model;
 import play.data.format.Formats;
@@ -11,21 +11,31 @@ import java.util.Date;
  * Created by astolarski on 09.01.17.
  */
 @Entity
-public class UserProfilePhotoModel extends Model {
+public class UserProfileModel extends Model {
 
     @Id
     @GeneratedValue
     public Long id;
-
 
     @Column(nullable = false, unique = true)
     @OneToOne
     @JoinColumn(name = "user")
     public UserModel user;
 
+
+    @Column(length =255, nullable = false)
     @Constraints.Required
     @Constraints.MaxLength(255)
-    public String photo;
+    public String firstname;
+
+    @Column(length = 255, nullable = false)
+    @Constraints.Required
+    @Constraints.MaxLength(255)
+    public String lastname;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    @Constraints.Required
+    public String biography;
 
     @Column(nullable = false)
     @Constraints.Required
@@ -37,16 +47,20 @@ public class UserProfilePhotoModel extends Model {
     @Formats.DateTime(pattern = "yyyy/mm/dd")
     public Date updateDate;
 
-    public Finder<Long, UserProfilePhotoModel> find = new Finder<Long, UserProfilePhotoModel>(
-            Long.class, UserProfilePhotoModel.class
+    public Finder<Long, UserProfileModel> find = new Finder<Long, UserProfileModel>(
+            Long.class, UserProfileModel.class
     );
 
-    public UserProfilePhotoModel findByUser(UserModel user){
+    public UserProfileModel findByUser(UserModel user){
 
-        try{
+        try {
+
             return find.where().eq("user", user).findUnique();
+
         }catch (NullPointerException e){
+
             return null;
+
         }
 
     }

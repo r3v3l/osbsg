@@ -1,6 +1,6 @@
 package controllers.user;
 
-import controllers.ApplicationController;
+import controllers.core.CoreResponseController;
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -9,34 +9,34 @@ import play.mvc.Result;
  */
 public class UserProfileMessagesController extends Controller {
 
-    public ApplicationController applicationController = new ApplicationController();
+    public CoreResponseController responseController = new CoreResponseController();
 
     public Result youMustLogin(){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "formDanger", "You must login first. Please try again.", "/user/login"
         );
     }
 
     public Result userProfileFormError(){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "formDanger", "Errors occured. Please try again", "/user/profile"
         );
     }
 
     public Result userProfieHasBeenUpdated(){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "formSuccess", "User profile has been updated.", "/user/profile"
         );
     }
 
     public Result userProfilePhotoFormError(){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "photoFormDanger", "Errors occured. Please try again", "/user/profile"
         );
     }
 
     public Result userProfilePhotoHasBeenUpdated(){
-        return applicationController.createMessage(
+        return responseController.createMessage(
                 "photoFormSuccess", "User profile photo has been updated.", "/user/profile"
         );
     }

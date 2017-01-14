@@ -1,5 +1,6 @@
 package models;
 
+import models.core.StatusModel;
 import org.junit.Test;
 import play.test.WithApplication;
 

@@ -1,16 +1,16 @@
 package controllers.newsletter;
 
-import models.BusinessCardModel;
-import models.ContactModel;
-import models.NewsletterModel;
-import models.UserModel;
+import models.core.BusinessCardModel;
+import models.core.ContactModel;
+import models.core.NewsletterModel;
+import models.core.UserModel;
 import play.data.Form;
 import play.data.validation.Constraints;
 import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
 import play.mvc.Controller;
 import play.mvc.Result;
-import services.RolesService;
+import services.core.RolesService;
 
 import java.util.Date;
 

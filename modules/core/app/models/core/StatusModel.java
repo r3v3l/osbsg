@@ -1,4 +1,4 @@
-package models;
+package models.core;
 
 import com.avaje.ebean.Model;
 import play.data.format.Formats;
@@ -12,7 +12,7 @@ import java.util.List;
  * Created by adrian on 06.12.16.
  */
 @Entity
-public class RoleModel extends Model {
+public class StatusModel extends Model {
 
     @Id
     @GeneratedValue
@@ -33,27 +33,29 @@ public class RoleModel extends Model {
     @Formats.DateTime(pattern = "yyyy/mm/dd")
     public Date updatedDate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    public List<StatusModel> statuses;
+    @ManyToMany(mappedBy="statuses")
+    public List<RoleModel> roles;
 
-    @ManyToMany(mappedBy="roles")
+    @ManyToMany(mappedBy="statuses")
     public List<UserModel> users;
 
-    public Finder<Long, RoleModel> find = new Finder<Long, RoleModel>(Long.class, RoleModel.class);
+    public Finder<Long, StatusModel> find = new Finder<Long, StatusModel>(Long.class, StatusModel.class);
 
     public int rowCount(){
         return find.findRowCount();
     }
 
-    public List<RoleModel> findAll(){
+    public List<StatusModel> findAll(){
         return find.all();
     }
 
-    public RoleModel findByName(String name){
+    public StatusModel findByName(String name){
+        StatusModel statusModel = new StatusModel();
         try {
             return find.where().eq("name", name).findUnique();
         }catch (NullPointerException e){
             return null;
         }
     }
+
 }

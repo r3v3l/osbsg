@@ -1,9 +1,9 @@
 package controllers.user;
 
-import controllers.ApplicationController;
-import models.RoleModel;
-import models.StatusModel;
-import models.UserModel;
+import controllers.core.CoreResponseController;
+import models.core.RoleModel;
+import models.core.StatusModel;
+import models.core.UserModel;
 import org.jetbrains.annotations.NotNull;
 import play.data.Form;
 import play.filters.csrf.AddCSRFToken;
@@ -74,7 +74,7 @@ public class SignUpController extends Controller {
 
     @NotNull
     private Result createMessage(String formWarning, String message) {
-        return ApplicationController.createResponse(
+        return CoreResponseController.createResponse(
                 "redirect", formWarning, message,
                 "/user/register-new-account"
         );

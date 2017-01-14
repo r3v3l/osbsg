@@ -1,8 +1,7 @@
-package models;
+package models.core;
 
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Model;
-import com.avaje.ebean.PagedList;
 import com.avaje.ebean.annotation.JsonIgnore;
 import play.data.format.Formats;
 import play.data.validation.Constraints;

@@ -1,13 +1,13 @@
 package controllers.dashboard;
 
-import controllers.ApplicationController;
-import models.BusinessCardModel;
-import models.ContactModel;
-import models.UserModel;
+import controllers.core.CoreResponseController;
+import models.core.BusinessCardModel;
+import models.core.ContactModel;
+import models.core.UserModel;
 import play.filters.csrf.AddCSRFToken;
 import play.mvc.Controller;
 import play.mvc.Result;
-import services.RolesService;
+import services.core.RolesService;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -49,7 +49,7 @@ public class DashboardController extends Controller {
 
      @NotNull
         private Result createMessage(String messageName, String message) {
-            return ApplicationController.createResponse(
+            return CoreResponseController.createResponse(
                     "redirect", messageName, message,
                     "/user/login"
             );
