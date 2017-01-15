@@ -28,7 +28,7 @@ public class NewsletterMessageController extends Controller {
     public Result formErrors(){
         return responseController.createMessage(
                 "newsletterFormDanger", "Errors occurred. Please try again.",
-                request().getHeader("refere")
+                request().getHeader("referer")
         );
     }
 

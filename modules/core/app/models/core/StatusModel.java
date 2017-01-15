@@ -39,6 +39,9 @@ public class StatusModel extends Model {
     @ManyToMany(mappedBy="statuses")
     public List<UserModel> users;
 
+    @ManyToMany(mappedBy="statuses")
+    public List<PageModel> pages;
+
     public Finder<Long, StatusModel> find = new Finder<Long, StatusModel>(Long.class, StatusModel.class);
 
     public int rowCount(){

@@ -1,5 +1,6 @@
 package models.core;
 
+import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Model;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
@@ -9,10 +10,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by adrian on 06.12.16.
+ * Created by astolarski on 15.01.17.
  */
 @Entity
-public class RoleModel extends Model {
+public class PageModel extends Model {
 
     @Id
     @GeneratedValue
@@ -23,6 +24,12 @@ public class RoleModel extends Model {
     @Constraints.MaxLength(255)
     public String name;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    public List<StatusModel> statuses;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    public List<RoleModel> roles;
+
     @Column(nullable = false)
     @Constraints.Required
     @Formats.DateTime(pattern = "yyyy/mm/dd")
@@ -31,32 +38,24 @@ public class RoleModel extends Model {
     @Column(nullable = false)
     @Constraints.Required
     @Formats.DateTime(pattern = "yyyy/mm/dd")
-    public Date updatedDate;
+    public Date updateDate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    public List<StatusModel> statuses;
+    public Finder<Long, PageModel> find = new Finder<Long, PageModel>(Long.class, PageModel.class);
 
-    @ManyToMany(mappedBy="roles")
-    public List<UserModel> users;
-
-    @ManyToMany(mappedBy="roles")
-    public List<PageModel> pages;
-
-    public Finder<Long, RoleModel> find = new Finder<Long, RoleModel>(Long.class, RoleModel.class);
-
-    public int rowCount(){
-        return find.findRowCount();
-    }
-
-    public List<RoleModel> findAll(){
+    public List<PageModel> findAll(){
         return find.all();
     }
 
-    public RoleModel findByName(String name){
+    public List<PageModel> findByPage(int page, int size){
+        return Ebean.find(PageModel.class).findPagedList(page, size).getList();
+    }
+
+    public PageModel findByName(String name){
         try {
             return find.where().eq("name", name).findUnique();
         }catch (NullPointerException e){
             return null;
         }
     }
+
 }

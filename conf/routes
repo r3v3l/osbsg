@@ -58,9 +58,20 @@ GET     /business-card/update-business-card/:id                 controllers.busi
 POST    /business-card/update-business-card/:id                 controllers.businessCard.BusinessCardController.updateCard(id: Long)
 GET     /business-card/get-card/:id                             controllers.businessCard.BusinessCardController.getCard(id: Long)
 GET     /business-card/delete-card/:id                          controllers.businessCard.BusinessCardController.deleteCard(id: Long)
+
 #HTML Company
 GET     /company                                                controllers.company.CompanyController.getCompany()
 POST    /company/create-new-company                             controllers.company.CompanyController.createCompany()
 POST    /company/update-company                                 controllers.company.CompanyController.updateCompany()
+
+#HTML Page
+GET     /pages/get-all                                          controllers.pages.PageController.getAll
+GET     /pages/page/:page/:size                                 controllers.pages.PageController.getPage(page: Integer, size: Integer)
+GET     /pages/view-page/:name                                  controllers.pages.PageController.getCurrentPage(name: String)
+GET     /pages/add-new-page                                     controllers.pages.CreatePageController.addPage
+POST    /pages/add-new-page                                     controllers.pages.CreatePageController.createPage
+GET     /pages/edit-page/:name                                  controllers.pages.UpdatePageController.editPage(name: String)
+POST    /pages/edit-page/:name                                  controllers.pages.UpdatePageController.updatePage(name: String)
+GET     /pages/delete-page/:name                                controllers.pages.UpdatePageController.deletePage(name: String)
 #HTML Dashboard
 GET     /dashboard                                              controllers.dashboard.DashboardController.dashboard

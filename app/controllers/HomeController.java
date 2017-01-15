@@ -1,6 +1,7 @@
 package controllers;
 
 import controllers.contact.ContactFormMessagesController;
+import models.core.UserModel;
 import play.filters.csrf.AddCSRFToken;
 import play.mvc.*;
 
@@ -16,6 +17,14 @@ public class HomeController extends Controller {
     @AddCSRFToken
     public Result index() {
         return ok(index.render(contactFormMessagesController.createMessages()));
+    }
+
+    public static boolean checkAuth(){
+        UserModel userModel = new UserModel();
+        if((session().get("email") == null) || (userModel.findByEmail(session().get("email")) == null)){
+            return false;
+        }
+        return true;
     }
 
 }

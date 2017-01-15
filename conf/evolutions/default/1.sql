@@ -74,6 +74,28 @@ create table newsletter_model (
 );
 create sequence newsletter_model_seq;
 
+create table page_model (
+  id                            bigint not null,
+  name                          varchar(255) not null,
+  creation_date                 timestamp not null,
+  update_date                   timestamp not null,
+  constraint uq_page_model_name unique (name),
+  constraint pk_page_model primary key (id)
+);
+create sequence page_model_seq;
+
+create table page_model_status_model (
+  page_model_id                 bigint not null,
+  status_model_id               bigint not null,
+  constraint pk_page_model_status_model primary key (page_model_id,status_model_id)
+);
+
+create table page_model_role_model (
+  page_model_id                 bigint not null,
+  role_model_id                 bigint not null,
+  constraint pk_page_model_role_model primary key (page_model_id,role_model_id)
+);
+
 create table response_contact_model (
   id                            bigint not null,
   contact                       bigint,
@@ -163,6 +185,18 @@ create index ix_business_card_model_user_id on business_card_model (user_id);
 
 alter table company_model add constraint fk_company_model_user foreign key (user) references user_model (id) on delete restrict on update restrict;
 
+alter table page_model_status_model add constraint fk_page_model_status_model_page_model foreign key (page_model_id) references page_model (id) on delete restrict on update restrict;
+create index ix_page_model_status_model_page_model on page_model_status_model (page_model_id);
+
+alter table page_model_status_model add constraint fk_page_model_status_model_status_model foreign key (status_model_id) references status_model (id) on delete restrict on update restrict;
+create index ix_page_model_status_model_status_model on page_model_status_model (status_model_id);
+
+alter table page_model_role_model add constraint fk_page_model_role_model_page_model foreign key (page_model_id) references page_model (id) on delete restrict on update restrict;
+create index ix_page_model_role_model_page_model on page_model_role_model (page_model_id);
+
+alter table page_model_role_model add constraint fk_page_model_role_model_role_model foreign key (role_model_id) references role_model (id) on delete restrict on update restrict;
+create index ix_page_model_role_model_role_model on page_model_role_model (role_model_id);
+
 alter table response_contact_model add constraint fk_response_contact_model_contact foreign key (contact) references contact_model (id) on delete restrict on update restrict;
 
 alter table role_model_status_model add constraint fk_role_model_status_model_role_model foreign key (role_model_id) references role_model (id) on delete restrict on update restrict;
@@ -194,6 +228,18 @@ alter table business_card_model drop constraint if exists fk_business_card_model
 drop index if exists ix_business_card_model_user_id;
 
 alter table company_model drop constraint if exists fk_company_model_user;
+
+alter table page_model_status_model drop constraint if exists fk_page_model_status_model_page_model;
+drop index if exists ix_page_model_status_model_page_model;
+
+alter table page_model_status_model drop constraint if exists fk_page_model_status_model_status_model;
+drop index if exists ix_page_model_status_model_status_model;
+
+alter table page_model_role_model drop constraint if exists fk_page_model_role_model_page_model;
+drop index if exists ix_page_model_role_model_page_model;
+
+alter table page_model_role_model drop constraint if exists fk_page_model_role_model_role_model;
+drop index if exists ix_page_model_role_model_role_model;
 
 alter table response_contact_model drop constraint if exists fk_response_contact_model_contact;
 
@@ -233,6 +279,13 @@ drop sequence if exists contact_model_seq;
 
 drop table if exists newsletter_model;
 drop sequence if exists newsletter_model_seq;
+
+drop table if exists page_model;
+drop sequence if exists page_model_seq;
+
+drop table if exists page_model_status_model;
+
+drop table if exists page_model_role_model;
 
 drop table if exists response_contact_model;
 drop sequence if exists response_contact_model_seq;
