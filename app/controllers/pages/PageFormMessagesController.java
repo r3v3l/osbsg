@@ -47,6 +47,33 @@ public class PageFormMessagesController extends Controller {
         if(flash("roleSuccess") != null){
             messages.put("roleSuccess", flash("roleSuccess"));
         }
+        if(flash("pageContentFormDanger") != null){
+            messages.put("pageContentFormDanger", flash("pageContentFormDanger"));
+        }
+        if(flash("pageContentFormWarning") != null){
+            messages.put("pageContentFormWarning", flash("pageContentFormWarning"));
+        }
+        if(flash("pageContentFormSuccess") != null){
+            messages.put("pageContentFormSuccess", flash("pageContentFormSuccess"));
+        }
+        if(flash("titleDanger") != null){
+            messages.put("titleDanger", flash("titleDanger"));
+        }
+        if(flash("titleWarning") != null){
+            messages.put("titleWarning", flash("titleWarning"));
+        }
+        if(flash("titleSuccess") != null){
+            messages.put("titleSuccess", flash("titleSuccess"));
+        }
+        if(flash("contentDanger") != null){
+            messages.put("contentDanger", flash("contentDanger"));
+        }
+        if(flash("contentWarning") != null){
+            messages.put("contentWarning", flash("contentWarning"));
+        }
+        if(flash("contentSuccess") != null){
+            messages.put("contentSuccess", flash("contentSuccess"));
+        }
         return messages;
     }
 

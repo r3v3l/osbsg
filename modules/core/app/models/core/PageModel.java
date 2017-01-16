@@ -40,6 +40,9 @@ public class PageModel extends Model {
     @Formats.DateTime(pattern = "yyyy/mm/dd")
     public Date updateDate;
 
+    @OneToOne(mappedBy = "page")
+    public PageContentModel pageContent;
+
     public Finder<Long, PageModel> find = new Finder<Long, PageModel>(Long.class, PageModel.class);
 
     public List<PageModel> findAll(){

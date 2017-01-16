@@ -74,6 +74,19 @@ create table newsletter_model (
 );
 create sequence newsletter_model_seq;
 
+create table page_content_model (
+  id                            bigint not null,
+  page                          bigint,
+  title                         varchar(255) not null,
+  content                       TEXT not null,
+  creation_date                 timestamp not null,
+  update_date                   timestamp not null,
+  constraint uq_page_content_model_page unique (page),
+  constraint uq_page_content_model_title unique (title),
+  constraint pk_page_content_model primary key (id)
+);
+create sequence page_content_model_seq;
+
 create table page_model (
   id                            bigint not null,
   name                          varchar(255) not null,
@@ -185,6 +198,8 @@ create index ix_business_card_model_user_id on business_card_model (user_id);
 
 alter table company_model add constraint fk_company_model_user foreign key (user) references user_model (id) on delete restrict on update restrict;
 
+alter table page_content_model add constraint fk_page_content_model_page foreign key (page) references page_model (id) on delete restrict on update restrict;
+
 alter table page_model_status_model add constraint fk_page_model_status_model_page_model foreign key (page_model_id) references page_model (id) on delete restrict on update restrict;
 create index ix_page_model_status_model_page_model on page_model_status_model (page_model_id);
 
@@ -228,6 +243,8 @@ alter table business_card_model drop constraint if exists fk_business_card_model
 drop index if exists ix_business_card_model_user_id;
 
 alter table company_model drop constraint if exists fk_company_model_user;
+
+alter table page_content_model drop constraint if exists fk_page_content_model_page;
 
 alter table page_model_status_model drop constraint if exists fk_page_model_status_model_page_model;
 drop index if exists ix_page_model_status_model_page_model;
@@ -279,6 +296,9 @@ drop sequence if exists contact_model_seq;
 
 drop table if exists newsletter_model;
 drop sequence if exists newsletter_model_seq;
+
+drop table if exists page_content_model;
+drop sequence if exists page_content_model_seq;
 
 drop table if exists page_model;
 drop sequence if exists page_model_seq;

@@ -4,7 +4,11 @@
     <li>
         <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
             <i class="fa fa-tasks"></i>
-            <span class="badge">@cards.size()</span>
+            @if(cards != null){
+                <span class="badge">@cards.size()</span>
+            }else {
+                <span class="badge">0</span>
+            }
         </a>
 
         <div class="dropdown-menu notification-menu large">
@@ -15,13 +19,15 @@
 
             <div class="content">
                 <ul>
-                    @for(card <- cards){
-                        <li>
-                            <p class="clearfix mb-xs">
-                                <span class="message pull-left">@card.firstname @card.lastname</span>
-                                <span class="message pull-right text-dark">@card.company</span>
-                            </p>
-                        </li>
+                    @if(cards != null){
+                        @for(card <- cards){
+                            <li>
+                                <p class="clearfix mb-xs">
+                                    <span class="message pull-left">@card.firstname @card.lastname</span>
+                                    <span class="message pull-right text-dark">@card.company</span>
+                                </p>
+                            </li>
+                        }
                     }
                 </ul>
             </div>
@@ -30,24 +36,34 @@
     <li>
         <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
             <i class="fa fa-envelope"></i>
-            <span class="badge">@contacts.size()</span>
+            @if(contacts != null){
+                <span class="badge">@contacts.size()</span>
+            }else {
+                <span class="badge">0</span>
+            }
         </a>
 
         <div class="dropdown-menu notification-menu">
             <div class="notification-title">
-                <span class="pull-right label label-default">230</span>
-                Messages
+                @if(contacts != null){
+                    <span class="badge">@contacts.size()</span>
+                }else {
+                    <span class="badge">0</span>
+                }
+                Contacts
             </div>
 
             <div class="content">
                 <ul>
-                    @for(contact <- contacts){
-                        <li>
-                            <a href="/contacts/get-contact/@contact.id" class="clearfix">
-                                <span class="title">@contact.name</span>
-                                <span class="message">@contact.message</span>
-                            </a>
-                        </li>
+                    @if(contacts != null){
+                        @for(contact <- contacts){
+                            <li>
+                                <a href="/contacts/get-contact/@contact.id" class="clearfix">
+                                    <span class="title">@contact.name</span>
+                                    <span class="message">@contact.message</span>
+                                </a>
+                            </li>
+                        }
                     }
                 </ul>
 

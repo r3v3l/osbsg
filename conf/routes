@@ -73,5 +73,7 @@ POST    /pages/add-new-page                                     controllers.page
 GET     /pages/edit-page/:name                                  controllers.pages.UpdatePageController.editPage(name: String)
 POST    /pages/edit-page/:name                                  controllers.pages.UpdatePageController.updatePage(name: String)
 GET     /pages/delete-page/:name                                controllers.pages.UpdatePageController.deletePage(name: String)
+POST    /pages/add-page-content/:name                           controllers.pages.PageContentController.createContent(name: String)
+POST    /pages/update-page-content/:name                        controllers.pages.PageContentController.updateContent(name: String)
 #HTML Dashboard
 GET     /dashboard                                              controllers.dashboard.DashboardController.dashboard
