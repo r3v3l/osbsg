@@ -43,6 +43,9 @@ public class PageModel extends Model {
     @OneToOne(mappedBy = "page")
     public PageContentModel pageContent;
 
+    @OneToOne(mappedBy = "page")
+    public PageMetaTagsModel pageMetaTags;
+
     public Finder<Long, PageModel> find = new Finder<Long, PageModel>(Long.class, PageModel.class);
 
     public List<PageModel> findAll(){

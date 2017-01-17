@@ -56,34 +56,6 @@ public class PageController  extends Controller{
         );
     }
 
-    @AddCSRFToken
-    public Result getCurrentPage(String name){
-        if(!HomeController.checkAuth()){
-
-        }
-        UserModel user = userModel.findByEmail(session().get("email"));
-        if(!PageRoleController.checkUserRole(user)){
-
-        }
-        PageModel currentPage = pageModel.findByName(name);
-        if(currentPage == null){
-
-        }
-        PageStatusController pageStatusController = new PageStatusController();
-        RoleModel roleModel = new RoleModel();
-        StatusModel statusModel = new StatusModel();
-        return ok(
-                views.html.pages.currentPage.render(
-                        user, contactModel.findLastFive(), businessCardModel.findLastFive(user),
-                        currentPage, pageFormMessagesController.getMessages(),
-                        pageRoleController.getCurrentRoles(currentPage),
-                        pageStatusController.getCurrenntStatuses(currentPage), roleModel.findAll(),
-                        statusModel.findAll()
-
-                )
-        );
-    }
-
     @RequireCSRFCheck
     public Result getOnlinePage(String name){
 

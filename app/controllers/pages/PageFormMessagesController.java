@@ -74,6 +74,51 @@ public class PageFormMessagesController extends Controller {
         if(flash("contentSuccess") != null){
             messages.put("contentSuccess", flash("contentSuccess"));
         }
+        if(flash("pageMetaTagsFormDanger") != null){
+            messages.put("pageMetaTagsFormDanger", flash("pageMetaTagsFormDanger"));
+        }
+        if(flash("pageMetaTagsFormWarning") != null){
+            messages.put("pageMetaTagsFormWarning", flash("pageMetaTagsFormWarning"));
+        }
+        if(flash("pageMetaTagsFormSuccess") != null){
+            messages.put("pageMetaTagsFormSuccess", flash("pageMetaTagsFormSuccess"));
+        }
+        if(flash("pageMetaTagsTitleDanger") != null){
+            messages.put("pageMetaTagsTitleDanger", flash("pageMetaTagsTitleDanger"));
+        }
+        if(flash("pageMetaTagsTitleWarning") != null){
+            messages.put("pageMetaTagsTitleWarning", flash("pageMetaTagsTitleWarning"));
+        }
+        if(flash("pageMetaTagsTitleSuccess") != null){
+            messages.put("pageMetaTagsTitleSuccess", flash("pageMetaTagsTitleSuccess"));
+        }
+        if(flash("pageMetaTagsDescriptionDanger") != null){
+            messages.put("pageMetaTagsDescriptionDanger", flash("pageMetaTagsDescriptionDanger"));
+        }
+        if(flash("pageMetaTagsDescriptionWarning") != null){
+            messages.put("pageMetaTagsDescriptionWarning", flash("pageMetaTagsDescriptionWarning"));
+        }
+        if(flash("pageMetaTagsDescriptionSuccess") != null){
+            messages.put("pageMetaTagsDescriptionSuccess", flash("pageMetaTagsDescriptionSuccess"));
+        }
+        if(flash("pageMetaTagsKeywordsDanger") != null){
+            messages.put("pageMetaTagsKeywordsDanger", flash("pageMetaTagsKeywordsDanger"));
+        }
+        if(flash("pageMetaTagsKeywordsWarning") != null){
+            messages.put("pageMetaTagsKeywordsWarning", flash("pageMetaTagsKeywordsWarning"));
+        }
+        if(flash("pageMetaTagsKeywordsSuccess") != null){
+            messages.put("pageMetaTagsKeywordsSuccess", flash("pageMetaTagsKeywordsSuccess"));
+        }
+        if(flash("pageMetaTagsRobotsDanger") != null){
+            messages.put("pageMetaTagsRobotsDanger", flash("pageMetaTagsRobotsDanger"));
+        }
+        if(flash("pageMetaTagsRobotsWarning") != null){
+            messages.put("pageMetaTagsRobotsWarning", flash("pageMetaTagsRobotsWarning"));
+        }
+        if(flash("pageMetaTagsRobotsSuccess") != null){
+            messages.put("pageMetaTagsRobotsSuccess", flash("pageMetaTagsRobotsSuccess"));
+        }
         return messages;
     }
 

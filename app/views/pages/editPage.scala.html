@@ -274,9 +274,9 @@ currentStatuses: Map[String, models.core.StatusModel]
 														<i class="fa fa-user"></i>
 													</span>
                                             @if(page.pageContent.content != null){
-                                                <textarea class="form-control" rows="3" id="content" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;">@page.pageContent.content</textarea>
+                                                <textarea name="content" class="form-control" rows="3" id="content" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;">@page.pageContent.content</textarea>
                                             }else {
-                                                <textarea class="form-control" rows="3" id="content" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;"></textarea>
+                                                <textarea name="content" class="form-control" rows="3" id="content" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;"></textarea>
                                             }
                                         </div>
                                     </div>
@@ -310,6 +310,186 @@ currentStatuses: Map[String, models.core.StatusModel]
                         </section>
                     </form>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @if(page.pageMetaTags != null){
+                        <form id="form" method="post" class="form-horizontal" action="/pages/update-page-meta-tags/@page.name">
+                        } else {
+                        <form id="form" method="post" class="form-horizontal" action="/pages/add-page-meta-tags/@page.name">
+                        }
+                    @CSRF.formField
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <div class="panel-actions">
+                                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                                <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                            </div>
+
+                            <h2 class="panel-title">Edit page meta tags @page.name</h2>
+                            <p class="panel-subtitle">
+                                You can edit page meta tags with @page.name here.
+                            </p>
+                            @if(messages.get("pageMetaTagsFormDanger") != null){
+                                <div class="alert alert-danger" role="alert">
+                                    @messages.get("pageMetaTagsFormDanger")
+                                </div>
+                            }
+                            @if(messages.get("pageMetaTagsFormWarning") != null){
+                                <div class="alert alert-warning" role="alert">
+                                    @messages.get("pageContentFormWarning")
+                                </div>
+                            }
+                            @if(messages.get("pageMetaTagsFormSuccess") != null){
+                                <div class="alert alert-success" role="alert">
+                                    @messages.get("pageMetaTagsFormSuccess")
+                                </div>
+                            }
+                        </header>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Page meta title <span class="required">*</span></label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                        @if(page.pageMetaTags.title != null){
+                                            <input type="text" name="title" class="form-control" placeholder="eg.: Title"
+                                                required autocomplete="off" value="@page.pageMetaTags.title" />
+                                        }else {
+                                            <input type="text" name="title" class="form-control" placeholder="eg.: Title"
+                                            required autocomplete="off" />
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    @if(messages.get("pageMetaTagsTitleDanger") != null){
+                                        <div class="alert alert-danger" role="alert">
+                                            @messages.get("pageMetaTagsTitleDanger")
+                                        </div>
+                                    }
+                                    @if(messages.get("pageMetaTagsTitleWarning") != null){
+                                        <div class="alert alert-warning" role="alert">
+                                            @messages.get("pageMetaTagsTitleWarning")
+                                        </div>
+                                    }
+                                    @if(messages.get("pageMetaTagsTitleSuccess") != null){
+                                        <div class="alert alert-success" role="alert">
+                                            @messages.get("pageMetaTagsTitleSuccess")
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Page meta description <span class="required">*</span></label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                        @if(page.pageMetaTags.description != null){
+                                            <textarea name="description" class="form-control" rows="3" id="content" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;">@page.pageMetaTags.description</textarea>
+                                        }else {
+                                            <textarea name="description" class="form-control" rows="3" id="content" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;"></textarea>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    @if(messages.get("pageMetaTagsDescriptionDanger") != null){
+                                        <div class="alert alert-danger" role="alert">
+                                            @messages.get("pageMetaTagsDescriptionDanger")
+                                        </div>
+                                    }
+                                    @if(messages.get("pageMetaTagsDescriptionWarning") != null){
+                                        <div class="alert alert-warning" role="alert">
+                                            @messages.get("pageMetaTagsDescriptionWarning")
+                                        </div>
+                                    }
+                                    @if(messages.get("pageMetaTagsDescriptionSuccess") != null){
+                                        <div class="alert alert-success" role="alert">
+                                            @messages.get("pageMetaTagsDescriptionSuccess")
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Page meta description <span class="required">*</span></label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                        @if(page.pageMetaTags.keywords != null){
+                                            <textarea name="description" class="form-control" rows="3" id="content" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;">@page.pageMetaTags.keywords</textarea>
+                                        }else {
+                                            <textarea name="description" class="form-control" rows="3" id="content" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;"></textarea>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    @if(messages.get("pageMetaTagsKeywordsDanger") != null){
+                                        <div class="alert alert-danger" role="alert">
+                                            @messages.get("pageMetaTagsKeywordsDanger")
+                                        </div>
+                                    }
+                                    @if(messages.get("pageMetaTagsKeywordsWarning") != null){
+                                        <div class="alert alert-warning" role="alert">
+                                            @messages.get("pageMetaTagsKeywordsWarning")
+                                        </div>
+                                    }
+                                    @if(messages.get("pageMetaTagsKeywordsSuccess") != null){
+                                        <div class="alert alert-success" role="alert">
+                                            @messages.get("pageMetaTagsKeywordsSuccess")
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Page meta robots <span class="required">*</span></label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                        @if(page.pageMetaTags.robots != null){
+                                            <input type="text" name="robots" class="form-control" placeholder="eg.: Title"
+                                            required autocomplete="off" value="@page.pageMetaTags.robots" />
+                                        }else {
+                                            <input type="text" name="robots" class="form-control" placeholder="eg.: Title"
+                                            required autocomplete="off" />
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    @if(messages.get("pageMetaTagsRobotsDanger") != null){
+                                        <div class="alert alert-danger" role="alert">
+                                            @messages.get("pageMetaTagsRobotsDanger")
+                                        </div>
+                                    }
+                                    @if(messages.get("pageMetaTagsRobotsWarning") != null){
+                                        <div class="alert alert-warning" role="alert">
+                                            @messages.get("pageMetaTagsRobotsWarning")
+                                        </div>
+                                    }
+                                    @if(messages.get("pageMetaTagsRobotsSuccess") != null){
+                                        <div class="alert alert-success" role="alert">
+                                            @messages.get("pageMetaTagsRobotsSuccess")
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="panel-footer">
+                            <div class="row">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <button class="btn btn-primary">Create or update page meta tags</button>
+                                    <button type="reset" class="btn btn-default">Reset form</button>
+                                </div>
+                            </div>
+                        </footer>
+                    </section>
+                </form>
             </div>
             <!-- end: page -->
         </section>

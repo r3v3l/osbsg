@@ -67,7 +67,6 @@ POST    /company/update-company                                 controllers.comp
 #HTML Page
 GET     /pages/get-all                                          controllers.pages.PageController.getAll
 GET     /pages/page/:page/:size                                 controllers.pages.PageController.getPage(page: Integer, size: Integer)
-GET     /pages/view-page/:name                                  controllers.pages.PageController.getCurrentPage(name: String)
 GET     /pages/add-new-page                                     controllers.pages.CreatePageController.addPage
 POST    /pages/add-new-page                                     controllers.pages.CreatePageController.createPage
 GET     /pages/edit-page/:name                                  controllers.pages.UpdatePageController.editPage(name: String)
@@ -75,5 +74,7 @@ POST    /pages/edit-page/:name                                  controllers.page
 GET     /pages/delete-page/:name                                controllers.pages.UpdatePageController.deletePage(name: String)
 POST    /pages/add-page-content/:name                           controllers.pages.PageContentController.createContent(name: String)
 POST    /pages/update-page-content/:name                        controllers.pages.PageContentController.updateContent(name: String)
+POST    /pages/add-page-meta-tags/:name                         controllers.pages.PageMetaTagsController.createMetaTags(name: String)
+POST    /pages/update-page-meta-tags/:name                      controllers.pages.PageMetaTagsController.updateMetaTags(name: String)
 #HTML Dashboard
 GET     /dashboard                                              controllers.dashboard.DashboardController.dashboard

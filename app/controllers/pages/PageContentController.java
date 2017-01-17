@@ -16,7 +16,7 @@ import java.util.Date;
  */
 public class PageContentController extends Controller {
 
-    private PageMessageController pageMessageController;
+    private PageMessageController pageMessageController = new PageMessageController();
     private PageModel pageModel = new PageModel();
     private UserModel userModel = new UserModel();
     private PageContentModel pageContentModel = new PageContentModel();
