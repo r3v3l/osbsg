@@ -47,6 +47,7 @@ public class PageContentModel extends Model {
         try {
             return find.where().eq("title", title).findUnique();
         }catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
     }

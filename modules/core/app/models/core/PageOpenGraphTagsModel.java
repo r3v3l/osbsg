@@ -1,6 +1,5 @@
 package models.core;
 
-import com.avaje.ebean.Finder;
 import com.avaje.ebean.Model;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
@@ -12,7 +11,7 @@ import java.util.Date;
  * Created by adrian on 17.01.17.
  */
 @Entity
-public class PageMetaTagsModel extends Model {
+public class PageOpenGraphTagsModel extends Model {
 
     @Id
     @GeneratedValue
@@ -33,13 +32,20 @@ public class PageMetaTagsModel extends Model {
     @Constraints.MaxLength(255)
     public String description;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     @Constraints.Required
-    public String keywords;
+    @Constraints.MaxLength(255)
+    public String tagType;
+
+    @Column(nullable = false, unique = true)
+    @Constraints.Required
+    @Constraints.MaxLength(255)
+    public String url;
 
     @Column(nullable = false)
     @Constraints.Required
-    public String robots;
+    @Constraints.MaxLength(255)
+    public String fbAdmins;
 
     @Column(nullable = false)
     @Constraints.Required
@@ -51,11 +57,11 @@ public class PageMetaTagsModel extends Model {
     @Formats.DateTime(pattern = "yyyy/mm/dd")
     public Date updateDate;
 
-    public Finder<Long, PageMetaTagsModel> find = new Finder<Long, PageMetaTagsModel>(
-            Long.class, PageMetaTagsModel.class
+    public Finder<Long, PageOpenGraphTagsModel> find = new Finder<Long, PageOpenGraphTagsModel>(
+            Long.class, PageOpenGraphTagsModel.class
     );
 
-    public PageMetaTagsModel findByPage(PageModel page){
+    public PageOpenGraphTagsModel findByPage(PageModel page){
         try {
             return find.where().eq("page", page).findUnique();
         }catch (NullPointerException e){
@@ -64,7 +70,7 @@ public class PageMetaTagsModel extends Model {
         }
     }
 
-    public PageMetaTagsModel findByTitle(String title){
+    public PageOpenGraphTagsModel findByTitle(String title){
         try {
             return find.where().eq("title", title).findUnique();
         }catch (NullPointerException e){
@@ -73,9 +79,18 @@ public class PageMetaTagsModel extends Model {
         }
     }
 
-    public PageMetaTagsModel findByDescription(String description){
+    public PageOpenGraphTagsModel findByDescription(String description){
         try {
             return find.where().eq("description", description).findUnique();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public PageOpenGraphTagsModel findByUrl(String url){
+        try {
+            return find.where().eq("url", url).findUnique();
         }catch (NullPointerException e){
             e.printStackTrace();
             return null;

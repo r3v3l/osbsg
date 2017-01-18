@@ -46,6 +46,7 @@ public class UserProfilePhotoModel extends Model {
         try{
             return find.where().eq("user", user).findUnique();
         }catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
 

@@ -74,6 +74,7 @@ public class CompanyModel extends Model {
         try {
             return find.where().eq("name", name).findUnique();
         }catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
     }
@@ -82,6 +83,7 @@ public class CompanyModel extends Model {
         try {
             return find.where().eq("taxNumber", taxNumber).findUnique();
         }catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
     }

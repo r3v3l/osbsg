@@ -59,6 +59,7 @@ public class UserProfileModel extends Model {
 
         }catch (NullPointerException e){
 
+            e.printStackTrace();
             return null;
 
         }

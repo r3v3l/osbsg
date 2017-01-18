@@ -52,6 +52,7 @@ public class NewsletterModel extends Model {
         try {
             return find.where().eq("email", email).findUnique();
         }catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
     }

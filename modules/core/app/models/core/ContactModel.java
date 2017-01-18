@@ -75,6 +75,7 @@ public class ContactModel extends Model {
         try {
             return find.ref(id);
         }catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
     }

@@ -125,6 +125,24 @@ create table page_model_role_model (
   constraint pk_page_model_role_model primary key (page_model_id,role_model_id)
 );
 
+create table page_open_graph_tags_model (
+  id                            bigint not null,
+  page                          bigint,
+  title                         varchar(255) not null,
+  description                   varchar(255) not null,
+  tag_type                      varchar(255) not null,
+  url                           varchar(255) not null,
+  fb_admins                     varchar(255) not null,
+  creation_date                 timestamp not null,
+  update_date                   timestamp not null,
+  constraint uq_page_open_graph_tags_model_page unique (page),
+  constraint uq_page_open_graph_tags_model_title unique (title),
+  constraint uq_page_open_graph_tags_model_description unique (description),
+  constraint uq_page_open_graph_tags_model_url unique (url),
+  constraint pk_page_open_graph_tags_model primary key (id)
+);
+create sequence page_open_graph_tags_model_seq;
+
 create table response_contact_model (
   id                            bigint not null,
   contact                       bigint,
@@ -230,6 +248,8 @@ create index ix_page_model_role_model_page_model on page_model_role_model (page_
 alter table page_model_role_model add constraint fk_page_model_role_model_role_model foreign key (role_model_id) references role_model (id) on delete restrict on update restrict;
 create index ix_page_model_role_model_role_model on page_model_role_model (role_model_id);
 
+alter table page_open_graph_tags_model add constraint fk_page_open_graph_tags_model_page foreign key (page) references page_model (id) on delete restrict on update restrict;
+
 alter table response_contact_model add constraint fk_response_contact_model_contact foreign key (contact) references contact_model (id) on delete restrict on update restrict;
 
 alter table role_model_status_model add constraint fk_role_model_status_model_role_model foreign key (role_model_id) references role_model (id) on delete restrict on update restrict;
@@ -277,6 +297,8 @@ drop index if exists ix_page_model_role_model_page_model;
 
 alter table page_model_role_model drop constraint if exists fk_page_model_role_model_role_model;
 drop index if exists ix_page_model_role_model_role_model;
+
+alter table page_open_graph_tags_model drop constraint if exists fk_page_open_graph_tags_model_page;
 
 alter table response_contact_model drop constraint if exists fk_response_contact_model_contact;
 
@@ -329,6 +351,9 @@ drop sequence if exists page_model_seq;
 drop table if exists page_model_status_model;
 
 drop table if exists page_model_role_model;
+
+drop table if exists page_open_graph_tags_model;
+drop sequence if exists page_open_graph_tags_model_seq;
 
 drop table if exists response_contact_model;
 drop sequence if exists response_contact_model_seq;

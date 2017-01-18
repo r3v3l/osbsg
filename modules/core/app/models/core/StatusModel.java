@@ -57,6 +57,7 @@ public class StatusModel extends Model {
         try {
             return find.where().eq("name", name).findUnique();
         }catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
     }

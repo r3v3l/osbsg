@@ -93,6 +93,7 @@ public class BusinessCardModel extends Model {
         try {
             return find.ref(id);
         }catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
     }
@@ -101,6 +102,7 @@ public class BusinessCardModel extends Model {
         try {
             return find.where().eq("id", id).eq("user", user).findUnique();
         }catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
     }

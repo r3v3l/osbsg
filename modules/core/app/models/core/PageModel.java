@@ -46,6 +46,9 @@ public class PageModel extends Model {
     @OneToOne(mappedBy = "page")
     public PageMetaTagsModel pageMetaTags;
 
+    @OneToOne(mappedBy = "page")
+    public PageOpenGraphTagsModel pageOpenGraphTags;
+
     public Finder<Long, PageModel> find = new Finder<Long, PageModel>(Long.class, PageModel.class);
 
     public List<PageModel> findAll(){
@@ -60,6 +63,7 @@ public class PageModel extends Model {
         try {
             return find.where().eq("name", name).findUnique();
         }catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
     }

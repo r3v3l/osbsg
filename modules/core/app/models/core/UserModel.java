@@ -100,6 +100,7 @@ public class UserModel extends Model {
         try {
             return find.where().eq("email", email.toLowerCase()).eq("shaPassword", getSha512(password)).findUnique();
         }catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
     }
@@ -108,6 +109,7 @@ public class UserModel extends Model {
         try {
             return find.where().eq("email", email).findUnique();
         }catch (NullPointerException e){
+            e.printStackTrace();
             return null;
         }
     }

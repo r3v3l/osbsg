@@ -119,6 +119,60 @@ public class PageFormMessagesController extends Controller {
         if(flash("pageMetaTagsRobotsSuccess") != null){
             messages.put("pageMetaTagsRobotsSuccess", flash("pageMetaTagsRobotsSuccess"));
         }
+        if(flash("pageOpenGraphTagsSuccess") != null){
+            messages.put("pageOpenGraphTagsSuccess", flash("pageOpenGraphTagsSuccess"));
+        }
+        if(flash("pageOpenGraphTagsWarning") != null){
+            messages.put("pageOpenGraphTagsWarning", flash("pageOpenGraphTagsWarning"));
+        }
+        if(flash("pageOpenGraphTagsDanger") != null){
+            messages.put("pageOpenGraphTagsDanger", flash("pageOpenGraphTagsDanger"));
+        }
+        if(flash("pageOpenGraphTagsTitleSuccess") != null){
+            messages.put("pageOpenGraphTagsTitleSuccess", flash("pageOpenGraphTagsTitleSuccess"));
+        }
+        if(flash("pageOpenGraphTagsTitleWarning") != null){
+            messages.put("pageOpenGraphTagsTitleWarning", flash("pageOpenGraphTagsTitleWarning"));
+        }
+        if(flash("pageOpenGraphTagsTitleDanger") != null){
+            messages.put("pageOpenGraphTagsTitleDanger", flash("pageOpenGraphTagsTitleDanger"));
+        }
+        if(flash("pageOpenGraphTagsDescriptionSuccess") != null){
+            messages.put("pageOpenGraphTagsDescriptionSuccess", flash("pageOpenGraphTagsDescriptionSuccess"));
+        }
+        if(flash("pageOpenGraphTagsDescriptionWarning") != null){
+            messages.put("pageOpenGraphTagsDescriptionWarning", flash("pageOpenGraphTagsDescriptionWarning"));
+        }
+        if(flash("pageOpenGraphTagsDescriptionDanger") != null){
+            messages.put("pageOpenGraphTagsDescriptionDanger", flash("pageOpenGraphTagsDescriptionDanger"));
+        }
+        if(flash("pageOpenGraphTagsUrlSuccess") != null){
+            messages.put("pageOpenGraphTagsUrlSuccess", flash("pageOpenGraphTagsUrlSuccess"));
+        }
+        if(flash("pageOpenGraphTagsUrlWarning") != null){
+            messages.put("pageOpenGraphTagsUrlWarning", flash("pageOpenGraphTagsUrlWarning"));
+        }
+        if(flash("pageOpenGraphTagsUrlDanger") != null){
+            messages.put("pageOpenGraphTagsUrlDanger", flash("pageOpenGraphTagsUrlDanger"));
+        }
+        if(flash("pageOpenGraphTagsTypeSuccess") != null){
+            messages.put("pageOpenGraphTagsTypeSuccess", flash("pageOpenGraphTagsTypeSuccess"));
+        }
+        if(flash("pageOpenGraphTagsTypeWarning") != null){
+            messages.put("pageOpenGraphTagsTypeWarning", flash("pageOpenGraphTagsTypeWarning"));
+        }
+        if(flash("pageOpenGraphTagsTypeDanger") != null){
+            messages.put("pageOpenGraphTagsTypeDanger", flash("pageOpenGraphTagsTypeDanger"));
+        }
+        if(flash("pageOpenGraphTagsFbAdminsSuccess") != null){
+            messages.put("pageOpenGraphTagsFbAdminsSuccess", flash("pageOpenGraphTagsFbAdminsSuccess"));
+        }
+        if(flash("pageOpenGraphTagsFbAdminsWarning") != null){
+            messages.put("pageOpenGraphFbAdminsWarning", flash("pageOpenGraphTagsFbAdminsWarning"));
+        }
+        if(flash("pageOpenGraphTagsFbAdminsDanger") != null){
+            messages.put("pageOpenGraphTagsFbAdminsDanger", flash("pageOpenGraphTagsFbAdminsDanger"));
+        }
         return messages;
     }
 

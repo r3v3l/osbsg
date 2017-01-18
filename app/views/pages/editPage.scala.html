@@ -414,7 +414,7 @@ currentStatuses: Map[String, models.core.StatusModel]
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Page meta description <span class="required">*</span></label>
+                                <label class="col-sm-3 control-label">Page meta keywords <span class="required">*</span></label>
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <span class="input-group-addon">
@@ -491,6 +491,222 @@ currentStatuses: Map[String, models.core.StatusModel]
                     </section>
                 </form>
             </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @if(page.pageMetaTags != null){
+                            <form id="form" method="post" class="form-horizontal" action="/pages/update-page-open-graph-tags/@page.name">
+                            } else {
+                            <form id="form" method="post" class="form-horizontal" action="/pages/add-page-open-graph-tags/@page.name">
+                            }
+                        @CSRF.formField
+                        <section class="panel">
+                            <header class="panel-heading">
+                                <div class="panel-actions">
+                                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                                    <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                                </div>
+
+                                <h2 class="panel-title">Edit page meta tags @page.name</h2>
+                                <p class="panel-subtitle">
+                                    You can edit page meta tags with @page.name here.
+                                </p>
+                                @if(messages.get("pageOpenGraphTagsFormDanger") != null){
+                                    <div class="alert alert-danger" role="alert">
+                                        @messages.get("pageOpenGraphTagsFormDanger")
+                                    </div>
+                                }
+                                @if(messages.get("pageOpenGraphTagsFormWarning") != null){
+                                    <div class="alert alert-warning" role="alert">
+                                        @messages.get("pageOpenGraphTagsFormWarning")
+                                    </div>
+                                }
+                                @if(messages.get("pageOpenGraphTagsFormSuccess") != null){
+                                    <div class="alert alert-success" role="alert">
+                                        @messages.get("pageOpenGraphTagsFormFormSuccess")
+                                    </div>
+                                }
+                            </header>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Page open graph title <span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                            @if(page.pageOpenGraphTags.title != null){
+                                                <input type="text" name="title" class="form-control" placeholder="eg.: Title"
+                                                required autocomplete="off" value="@page.pageOpenGraphTags.title" />
+                                            }else {
+                                                <input type="text" name="title" class="form-control" placeholder="eg.: Title"
+                                                required autocomplete="off" />
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        @if(messages.get("pageOpenGraphTagsTitleDanger") != null){
+                                            <div class="alert alert-danger" role="alert">
+                                                @messages.get("pageOpenGraphTagsTitleDanger")
+                                            </div>
+                                        }
+                                        @if(messages.get("pageOpenGraphTagsTitleWarning") != null){
+                                            <div class="alert alert-warning" role="alert">
+                                                @messages.get("pageOpenGraphTagsTitleWarning")
+                                            </div>
+                                        }
+                                        @if(messages.get("pageOpenGraphTagsTitleSuccess") != null){
+                                            <div class="alert alert-success" role="alert">
+                                                @messages.get("pageOpenGraphTagsTitleSuccess")
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Page open graph description <span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                            @if(page.pageMetaTags.description != null){
+                                                <textarea name="description" class="form-control" rows="3" id="content" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;">@page.pageMetaTags.description</textarea>
+                                            }else {
+                                                <textarea name="description" class="form-control" rows="3" id="content" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;"></textarea>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        @if(messages.get("pageOpenGraphTagsDescriptionDanger") != null){
+                                            <div class="alert alert-danger" role="alert">
+                                                @messages.get("pageOpenGraphTagsDescriptionDanger")
+                                            </div>
+                                        }
+                                        @if(messages.get("pageMetaTagsDescriptionWarning") != null){
+                                            <div class="alert alert-warning" role="alert">
+                                                @messages.get("pageOpenGraphTagsDescriptionWarning")
+                                            </div>
+                                        }
+                                        @if(messages.get("pageOpenGraphTagsDescriptionSuccess") != null){
+                                            <div class="alert alert-success" role="alert">
+                                                @messages.get("pageOpenGraphTagsDescriptionSuccess")
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Page open graph url <span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                            @if(page.pageOpenGraphTags.url != null){
+                                                <input type="url" name="url" class="form-control" placeholder="eg.: https://google.com"
+                                                required autocomplete="off" value="@page.pageOpenGraphTags.url" />
+                                            }else {
+                                                <input type="url" name="url" class="form-control" placeholder="eg.: https://google.com"
+                                                required autocomplete="off" />
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        @if(messages.get("pageOpenGraphsUrlDanger") != null){
+                                            <div class="alert alert-danger" role="alert">
+                                                @messages.get("pageOpenGraphsUrlDanger")
+                                            </div>
+                                        }
+                                        @if(messages.get("pageOpenGraphsUrlWarning") != null){
+                                            <div class="alert alert-warning" role="alert">
+                                                @messages.get("pageOpenGraphsUrlWarning")
+                                            </div>
+                                        }
+                                        @if(messages.get("pageOpenGraphsUrlSuccess") != null){
+                                            <div class="alert alert-success" role="alert">
+                                                @messages.get("pageOpenGraphsUrlSuccess")
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Page open graph type <span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                            @if(page.pageOpenGraphTags.tagType != null){
+                                                <input type="text" name="type" class="form-control" placeholder="eg.: article"
+                                                required autocomplete="off" value="@page.pageOpenGraphTags.tagType" />
+                                            }else {
+                                                <input type="text" name="type" class="form-control" placeholder="eg.: article"
+                                                required autocomplete="off" />
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        @if(messages.get("pageOpenGraphsTypeDanger") != null){
+                                            <div class="alert alert-danger" role="alert">
+                                                @messages.get("pageOpenGraphsTypeDanger")
+                                            </div>
+                                        }
+                                        @if(messages.get("pageOpenGraphsTypeWarning") != null){
+                                            <div class="alert alert-warning" role="alert">
+                                                @messages.get("pageOpenGraphsTypeWarning")
+                                            </div>
+                                        }
+                                        @if(messages.get("pageOpenGraphsTypeSuccess") != null){
+                                            <div class="alert alert-success" role="alert">
+                                                @messages.get("pageOpenGraphsTypeSuccess")
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Page open graph fb admins <span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-user"></i>
+                                            </span>
+                                            @if(page.pageOpenGraphTags.fbAdmins != null){
+                                                <input type="text" name="type" class="form-control" placeholder="eg.: 12324345346"
+                                                    required autocomplete="off" value="@page.pageOpenGraphTags.fbAdmins" />
+                                            }else {
+                                                <input type="text" name="type" class="form-control" placeholder="eg.: 12324345346"
+                                                required autocomplete="off" />
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        @if(messages.get("pageOpenGraphsFbAdminsDanger") != null){
+                                            <div class="alert alert-danger" role="alert">
+                                                @messages.get("pageOpenGraphsFbAdminsDanger")
+                                            </div>
+                                        }
+                                        @if(messages.get("pageOpenGraphsFbAdminsWarning") != null){
+                                            <div class="alert alert-warning" role="alert">
+                                                @messages.get("pageOpenGraphsFbAdminsWarning")
+                                            </div>
+                                        }
+                                        @if(messages.get("pageOpenGraphsFbAdminsSuccess") != null){
+                                            <div class="alert alert-success" role="alert">
+                                                @messages.get("pageOpenGraphsFbAdminsSuccess")
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="panel-footer">
+                                <div class="row">
+                                    <div class="col-sm-9 col-sm-offset-3">
+                                        <button class="btn btn-primary">Create or update page open graphs tags</button>
+                                        <button type="reset" class="btn btn-default">Reset form</button>
+                                    </div>
+                                </div>
+                            </footer>
+                        </section>
+                    </form>
+                    </div>
             <!-- end: page -->
         </section>
     </div>
