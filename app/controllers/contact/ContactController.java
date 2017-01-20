@@ -8,9 +8,9 @@ import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
 import play.mvc.Controller;
 import play.mvc.Result;
+import repositories.ContactRepo;
 import services.core.RolesService;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,21 +32,14 @@ public class ContactController extends Controller {
         if(contactForm.hasErrors()){
 
         }
-
-        ContactFormController.Contact contact = contactForm.get();
-
-        ContactModel contactModel = new ContactModel();
-        contactModel.name = contact.name;
-        contactModel.email = contact.email;
-        contactModel.phone = contact.phone;
-        contactModel.message = contact.message;
-        contactModel.response = false;
-        contactModel.creationDate = new Date();
-        contactModel.updateDate = new Date();
-        contactModel.save();
-
+        createContact(contactForm.get());
         return contactMessageController.success();
 
+    }
+
+    private void createContact(ContactFormController.Contact contact){
+        ContactRepo contactRepo = new ContactRepo();
+        contactRepo.createContact(contact);
     }
 
     @AddCSRFToken

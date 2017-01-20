@@ -8,10 +8,10 @@ import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
 import play.mvc.Controller;
 import play.mvc.Result;
+import repositories.BusinessCardRepo;
 import services.core.RolesService;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -140,17 +140,8 @@ public class BusinessCardController extends Controller {
     }
 
     private void createBusinessCard(UserModel currentUser, BusinessCardFormController.BusinessCard businessCard) {
-        BusinessCardModel businessCardModel = new BusinessCardModel();
-        businessCardModel.user = currentUser;
-        businessCardModel.firstname = businessCard.firstname;
-        businessCardModel.lastname = businessCard.lastname;
-        businessCardModel.email = businessCard.email;
-        businessCardModel.phone = businessCard.phone;
-        businessCardModel.company = businessCard.company;
-        businessCardModel.address = businessCard.address;
-        businessCardModel.creationDate = new Date();
-        businessCardModel.updateDate = new Date();
-        businessCardModel.save();
+        BusinessCardRepo businessCardRepo = new BusinessCardRepo();
+        businessCardRepo.createBusinessCard(currentUser, businessCard);
     }
 
     @AddCSRFToken
@@ -210,14 +201,8 @@ public class BusinessCardController extends Controller {
     }
 
     private void updateBusinessCard(BusinessCardModel card, BusinessCardFormController.BusinessCard currentCard) {
-        card.firstname = currentCard.firstname;
-        card.lastname = currentCard.lastname;
-        card.email = currentCard.email;
-        card.company = currentCard.company;
-        card.phone = currentCard.phone;
-        card.address = currentCard.address;
-        card.updateDate = new Date();
-        card.update();
+        BusinessCardRepo businessCardRepo = new BusinessCardRepo();
+        businessCardRepo.updateBusinessCard(card, currentCard);
     }
 
     public Result deleteCard(Long id){
@@ -238,8 +223,12 @@ public class BusinessCardController extends Controller {
             return businessCardMessageController.cardNotFound();
         }
 
-        card.delete();
         return businessCardMessageController.hasBeenDeleted();
+    }
+
+    private void deleteBusinessCard(BusinessCardModel card){
+        BusinessCardRepo businessCardRepo = new BusinessCardRepo();
+        businessCardRepo.deleteBusinessCard(card);
     }
 
 }

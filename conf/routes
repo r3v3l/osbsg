@@ -78,6 +78,7 @@ POST    /pages/add-page-meta-tags/:name                         controllers.page
 POST    /pages/update-page-meta-tags/:name                      controllers.pages.PageMetaTagsController.updateMetaTags(name: String)
 POST    /pages/add-page-open-graph-tags/:name                   controllers.pages.PageOpenGraphTagController.createOpenGraphTags(name: String)
 POST    /pages/update-page-open-graph-tags/:name                controllers.pages.PageOpenGraphTagController.updateOpenGraphTags(name: String)
-
+POST    /pages/add-page-open-graph-image/:name                  controllers.pages.PageOpenGraphTagController.createOpenGraphTags(name: String)
+POST    /pages/update-page-open-graph-image/:name               controllers.pages.PageOpenGraphTagController.updateOpenGraphTags(name: String)
 #HTML Dashboard
 GET     /dashboard                                              controllers.dashboard.DashboardController.dashboard

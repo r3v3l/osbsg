@@ -10,6 +10,7 @@ import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
 import play.mvc.Controller;
 import play.mvc.Result;
+import repositories.NewsletterRepo;
 import services.core.RolesService;
 
 import java.util.Date;
@@ -59,6 +60,11 @@ public class NewsletterController extends Controller {
             return newsletterMessageController.formErrors();
         }
         return newsletterMessageController.emailCreated(email.email);
+    }
+
+    private void createNewsletterEmail(Email email){
+        NewsletterRepo newsletterRepo = new NewsletterRepo();
+        newsletterRepo.createNewsletterEmail(email);
     }
 
     @AddCSRFToken

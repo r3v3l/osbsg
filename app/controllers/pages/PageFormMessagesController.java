@@ -173,6 +173,24 @@ public class PageFormMessagesController extends Controller {
         if(flash("pageOpenGraphTagsFbAdminsDanger") != null){
             messages.put("pageOpenGraphTagsFbAdminsDanger", flash("pageOpenGraphTagsFbAdminsDanger"));
         }
+        if(flash("pageOpenGraphTagsImageFormDanger") != null){
+            messages.put("pageOpenGraphTagsImageFormDanger", flash("pageOpenGraphTagsImageFormDanger"));
+        }
+        if(flash("pageOpenGraphTagsImageFormWarning") != null){
+            messages.put("pageOpenGraphTagsImageFormWarning", flash("pageOpenGraphTagsImageFormWarning"));
+        }
+        if(flash("pageOpenGraphTagsImageFormSuccess") != null){
+            messages.put("pageOpenGraphTagsImageFormSuccess", flash("pageOpenGraphTagsImageFormSuccess"));
+        }
+        if(flash("pageOpenGraphTagsImageDanger") != null){
+            messages.put("pageOpenGraphTagsImageDanger", flash("pageOpenGraphTagsImageDanger"));
+        }
+        if(flash("pageOpenGraphTagsImageFormWarning") != null){
+            messages.put("pageOpenGraphTagsImageWarning", flash("pageOpenGraphTagsImageWarning"));
+        }
+        if(flash("pageOpenGraphTagsImageSuccess") != null){
+            messages.put("pageOpenGraphTagsImageSuccess", flash("pageOpenGraphTagsImageSuccess"));
+        }
         return messages;
     }
 

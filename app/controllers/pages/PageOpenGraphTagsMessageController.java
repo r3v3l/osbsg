@@ -7,7 +7,7 @@ import play.mvc.Result;
 /**
  * Created by adrian on 18.01.17.
  */
-public class PageOpenGraphMessageController extends Controller {
+public class PageOpenGraphTagsMessageController extends Controller {
 
     private CoreResponseController responseController = new CoreResponseController();
 

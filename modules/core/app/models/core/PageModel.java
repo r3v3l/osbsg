@@ -49,6 +49,9 @@ public class PageModel extends Model {
     @OneToOne(mappedBy = "page")
     public PageOpenGraphTagsModel pageOpenGraphTags;
 
+    @OneToOne(mappedBy = "page")
+    public PageOpenGraphTagsImageModel pageOpenGraphTagsImageModel;
+
     public Finder<Long, PageModel> find = new Finder<Long, PageModel>(Long.class, PageModel.class);
 
     public List<PageModel> findAll(){

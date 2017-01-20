@@ -1,6 +1,6 @@
 name := """com.osbsg"""
 
-version := "0.1.3-SNAPSHOT"
+version := "0.1.24-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean).aggregate(core).dependsOn(core);
 

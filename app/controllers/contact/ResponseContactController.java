@@ -10,6 +10,8 @@ import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
 import play.mvc.Controller;
 import play.mvc.Result;
+import repositories.ContactRepo;
+import repositories.ResponseRepo;
 import services.core.RolesService;
 
 import java.util.Date;
@@ -83,14 +85,13 @@ public class ResponseContactController extends Controller {
         }
 
         ContactResponse contactResponse = contactResponseForm.get();
-
         createResponse(currentContact, contactResponse);
-
         currentContactUpdate(currentContact);
 
         sendEmail(currentContact, contactResponse);
 
-        return ok();
+        return contactMessageController.contactHasBeenUpdated(currentContact);
+
     }
 
     private void sendEmail(ContactModel currentContact, ContactResponse contactResponse) {
@@ -99,18 +100,13 @@ public class ResponseContactController extends Controller {
     }
 
     private void currentContactUpdate(ContactModel currentContact) {
-        currentContact.response = true;
-        currentContact.updateDate = new Date();
-        currentContact.save();
+        ContactRepo contactRepo = new ContactRepo();
+        contactRepo.currentContactUpdate(currentContact);
     }
 
     private void createResponse(ContactModel currentContact, ContactResponse contactResponse) {
-        ResponseContactModel responseContactModel = new ResponseContactModel();
-        responseContactModel.response = contactResponse.response;
-        responseContactModel.contact = currentContact;
-        responseContactModel.creationDate = new Date();
-        responseContactModel.updateDate = new Date();
-        responseContactModel.save();
+        ResponseRepo responseRepo = new ResponseRepo();
+        responseRepo.createResponse(currentContact, contactResponse);
     }
 
 }

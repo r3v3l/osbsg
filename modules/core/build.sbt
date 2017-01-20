@@ -1,6 +1,6 @@
 name := """core"""
 
-version := "0.0.4-SNAPSHOT"
+version := "0.0.5-SNAPSHOT"
 
 lazy val core = project.in(file(".")).enablePlugins(PlayJava, PlayEbean)
 

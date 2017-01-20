@@ -2,7 +2,6 @@ package controllers.company;
 
 import controllers.user.UserProfileMessagesController;
 import models.core.BusinessCardModel;
-import models.core.CompanyModel;
 import models.core.ContactModel;
 import models.core.UserModel;
 import play.data.Form;
@@ -10,9 +9,10 @@ import play.filters.csrf.AddCSRFToken;
 import play.filters.csrf.RequireCSRFCheck;
 import play.mvc.Controller;
 import play.mvc.Result;
+import repositories.CompanyRepo;
+import services.core.CompanyService;
 import services.core.RolesService;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -123,46 +123,23 @@ public class CompanyController extends Controller {
     }
 
     private void createNewCompany(UserModel currentUser, CompanyFormController.CurrentCompany currentCompany) {
-        CompanyModel companyModel = new CompanyModel();
-        companyModel.city = currentCompany.city;
-        companyModel.lawForm = currentCompany.lawForm;
-        companyModel.country = currentCompany.country;
-        companyModel.creationDate = new Date();
-        companyModel.name = currentCompany.name;
-        companyModel.postalCode = currentCompany.postalCode;
-        companyModel.street = currentCompany.street;
-        companyModel.taxNumber = currentCompany.taxNumber;
-        companyModel.updatedDate = new Date();
-        companyModel.user = currentUser;
-        companyModel.save();
+        CompanyRepo companyRepo = new CompanyRepo();
+        companyRepo.createCompany(currentUser, currentCompany);
     }
 
     private void updateExistsCompany(UserModel currentUser, CompanyFormController.CurrentCompany currentCompany) {
-        currentUser.company.city = currentCompany.city;
-        currentUser.company.lawForm = currentCompany.lawForm;
-        currentUser.company.country = currentCompany.country;
-        currentUser.company.name = currentCompany.name;
-        currentUser.company.postalCode = currentCompany.postalCode;
-        currentUser.company.street = currentCompany.street;
-        currentUser.company.taxNumber = currentCompany.taxNumber;
-        currentUser.company.updatedDate = new Date();
-        currentUser.company.update();
+        CompanyRepo companyRepo = new CompanyRepo();
+        companyRepo.updateCompany(currentUser, currentCompany);
     }
 
     public boolean checkName(String name){
-        CompanyModel companyModel = new CompanyModel();
-        if(companyModel.findByName(name) != null){
-            return true;
-        }
-        return false;
+        CompanyService companyService = new CompanyService();
+        return companyService.checkName(name);
     }
 
     public boolean checkNip(String taxNumber){
-        CompanyModel companyModel = new CompanyModel();
-        if(companyModel.findByTaxNumber(taxNumber) != null){
-            return true;
-        }
-        return false;
+        CompanyService companyService = new CompanyService();
+        return companyService.checkNip(taxNumber);
     }
 
 }

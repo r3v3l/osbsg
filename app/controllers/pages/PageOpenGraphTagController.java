@@ -21,7 +21,8 @@ public class PageOpenGraphTagController extends Controller {
     private UserModel userModel = new UserModel();
     private PageModel pageModel = new PageModel();
     private PageOpenGraphTagsModel pageOpenGraphTagsModel = new PageOpenGraphTagsModel();
-    private PageOpenGraphMessageController pageOpenGraphMessageController = new PageOpenGraphMessageController();
+    private PageOpenGraphTagsMessageController pageOpenGraphMessageController =
+            new PageOpenGraphTagsMessageController();
 
     @RequireCSRFCheck
     public Result createOpenGraphTags(String name){
