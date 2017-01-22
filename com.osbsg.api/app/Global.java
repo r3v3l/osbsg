@@ -1,5 +1,6 @@
 import models.core.CoreRoleModel;
 import models.core.CoreStatusModel;
+import models.core.CoreUserModel;
 import play.Application;
 import play.GlobalSettings;
 import play.Logger;
@@ -13,6 +14,7 @@ public class Global extends GlobalSettings {
 
     private CoreStatusModel coreStatusModel = new CoreStatusModel();
     private CoreRoleModel coreRoleModel = new CoreRoleModel();
+    private CoreUserModel coreUserModel = new CoreUserModel();
 
     public void onStart(Application app) {
         if(coreStatusModel.rowCount() == 0) {
@@ -20,6 +22,9 @@ public class Global extends GlobalSettings {
         }
         if(coreRoleModel.rowCount() == 0){
             createRoles();
+        }
+        if(coreUserModel.rowCount() == 0){
+            createUser();
         }
         Logger.info("Application has started");
     }
@@ -76,6 +81,20 @@ public class Global extends GlobalSettings {
         coreRoleModel.updateDate = new Date();
         coreRoleModel.save();
         Logger.info("Role " +name+ " has been created.");
+    }
+
+    public void createUser(){
+        Logger.info("Create user ...");
+        CoreUserModel coreUserModel = new CoreUserModel();
+        coreUserModel.setEmail("adus@cos.cos");
+        coreUserModel.setPassword("P@ssw0rd");
+        coreUserModel.statuses.add(coreStatusModel.findByName("active"));
+        coreUserModel.statuses.add(coreStatusModel.findByName("online"));
+        coreUserModel.roles = coreRoleModel.findAll();
+        coreUserModel.creationDate = new Date();
+        coreUserModel.updateDate = new Date();
+        coreUserModel.save();
+        Logger.info("User adus@cos.cos has been created.");
     }
 
 }

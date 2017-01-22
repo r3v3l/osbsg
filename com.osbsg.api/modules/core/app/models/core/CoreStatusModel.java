@@ -26,6 +26,9 @@ public class CoreStatusModel extends Model {
     @ManyToMany(mappedBy="statuses")
     public List<CoreRoleModel> roles;
 
+    @ManyToMany(mappedBy="statuses")
+    public List<CoreUserModel> users;
+
     @Column(nullable = false)
     @Constraints.Required
     @Formats.DateTime(pattern = "yyyy/mm-dd")
