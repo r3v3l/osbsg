@@ -1,6 +1,6 @@
 name := "core"
 
-version := "0.0.1BUILD"
+version := "0.0.2-BUILD"
 
 lazy val core = (project in file(".")).enablePlugins(PlayJava, PlayEbean)
 scalaVersion := "2.11.7"

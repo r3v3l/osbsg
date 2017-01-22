@@ -1,3 +1,4 @@
+import models.core.CoreRoleModel;
 import models.core.CoreStatusModel;
 import play.Application;
 import play.GlobalSettings;
@@ -11,10 +12,14 @@ import java.util.Date;
 public class Global extends GlobalSettings {
 
     private CoreStatusModel coreStatusModel = new CoreStatusModel();
+    private CoreRoleModel coreRoleModel = new CoreRoleModel();
 
     public void onStart(Application app) {
         if(coreStatusModel.rowCount() == 0) {
             createStatuses();
+        }
+        if(coreRoleModel.rowCount() == 0){
+            createRoles();
         }
         Logger.info("Application has started");
     }
@@ -47,5 +52,30 @@ public class Global extends GlobalSettings {
         Logger.info("Application shutdown...");
     }
 
+    public void createRoles(){
+        Logger.info("Create application roles ...");
+        createRole("guest");
+        createRole("user");
+        createRole("customer");
+        createRole("advertiser");
+        createRole("author");
+        createRole("editor");
+        createRole("moderator");
+        createRole("accountManager");
+        createRole("root");
+        Logger.info("Roles have been created.");
+    }
+
+    public void createRole(String name){
+        Logger.info("Create role " +name+ "...");
+        CoreRoleModel coreRoleModel = new CoreRoleModel();
+        coreRoleModel.name = name;
+        coreRoleModel.statuses.add(coreStatusModel.findByName("active"));
+        coreRoleModel.statuses.add(coreStatusModel.findByName("online"));
+        coreRoleModel.creationDate = new Date();
+        coreRoleModel.updateDate = new Date();
+        coreRoleModel.save();
+        Logger.info("Role " +name+ " has been created.");
+    }
 
 }
