@@ -1,9 +1,8 @@
-name := "user"
+name := "core"
 
-version := "0.0.1-BUILD"
+version := "0.0.3-BUILD"
 
-lazy val user = (project in file(".")).enablePlugins(PlayJava, PlayEbean).dependsOn(core).aggregate(core)
-lazy val core = (project in file("modules/core")).enablePlugins(PlayJava, PlayEbean)
+lazy val core = (project in file(".")).enablePlugins(PlayJava, PlayEbean)
 scalaVersion := "2.11.7"
 libraryDependencies ++= Seq (
   javaJdbc,
