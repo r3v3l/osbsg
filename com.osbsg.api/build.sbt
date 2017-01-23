@@ -2,8 +2,9 @@ name := """com.osbsg.api"""
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean).dependsOn(core).aggregate(core)
+lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean).dependsOn(core, user).aggregate(core, user)
 lazy val core = (project in file("modules/core")).enablePlugins(PlayJava, PlayEbean)
+lazy val user = (project in file("modules/user")).enablePlugins(PlayJava, PlayEbean).dependsOn(core)
 
 
 scalaVersion := "2.11.7"
