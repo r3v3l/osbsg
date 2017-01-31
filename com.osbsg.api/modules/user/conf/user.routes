@@ -1,2 +1,3 @@
 POST    /signIn             controllers.user.signin.SignInController.signIn
+POST    /signUp             controllers.user.signup.SignUpController.signUp
 GET /assets/*file           controllers.Assets.at(path="/public/lib/myadmin", file)

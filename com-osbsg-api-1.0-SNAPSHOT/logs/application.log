@@ -25,3 +25,7 @@
 2017-01-31 10:35:45,065 [INFO] from application in main - Application has started
 2017-01-31 10:35:45,070 [INFO] from play.api.Play in main - Application started (Prod)
 2017-01-31 10:35:45,269 [INFO] from play.core.server.NettyServer in main - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2017-01-31 15:53:55,213 [WARN] from com.zaxxer.hikari.pool.HikariPool in HikariPool-1 housekeeper - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=47m12s149ms538µs918ns).
+2017-01-31 15:53:56,428 [INFO] from application in Thread-9 - Application shutdown...
+2017-01-31 15:53:56,430 [INFO] from application in Thread-9 - ApplicationTimer demo: Stopping application at 2017-01-31T14:53:56.430Z after 19092s.
+2017-01-31 15:53:56,840 [INFO] from application in Thread-9 - Shutting down connection pool.
