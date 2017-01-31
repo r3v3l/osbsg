@@ -29,7 +29,7 @@ public class SignInController extends Controller implements I_EmailCheckable {
         GetUserByEmailAndPassword getUserByEmailAndPassword = new GetUserByEmailAndPassword();
         CoreUserModel coreUserModel = getUserByEmailAndPassword.findByEmailAndPassword(signIn.email, signIn.password);
         if(coreUserModel == null){
-            return response("error", "Użytkownik o adresie " +signIn.email+ " nie istnieje.");
+            return response("error", "Nieprawidłowe hasło.");
         }
 
         session().put("email", coreUserModel.email);

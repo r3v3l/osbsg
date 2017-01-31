@@ -1,6 +1,6 @@
 name := "user"
 
-version := "0.0.1-BUILD"
+version := "0.0.2-BUILD"
 
 lazy val user = (project in file(".")).enablePlugins(PlayJava, PlayEbean).dependsOn(core).aggregate(core)
 lazy val core = (project in file("modules/core")).enablePlugins(PlayJava, PlayEbean)
