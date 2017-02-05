@@ -36,16 +36,6 @@ public class CoreUserModel extends Model {
     @ManyToMany(cascade = CascadeType.ALL)
     public List<CoreRoleModel> roles;
 
-    @Column(nullable = false)
-    @Constraints.Required
-    @Formats.DateTime(pattern = "yyyy/mm-dd")
-    public Date creationDate;
-
-    @Column(nullable = false)
-    @Constraints.Required
-    @Formats.DateTime(pattern = "yyyy/mm-dd")
-    public Date updateDate;
-
     public void setPassword(String password) {
         this.shaPassword = getSha512(password);
     }

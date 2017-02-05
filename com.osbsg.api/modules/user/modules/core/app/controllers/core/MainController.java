@@ -12,7 +12,6 @@ public class MainController extends Controller {
         ObjectNode wrapper = Json.newObject();
         ObjectNode msg = Json.newObject();
         msg.put("message", message);
-        wrapper.put(type, message);
         return wrapper;
     }
 
