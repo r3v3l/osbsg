@@ -1,6 +1,6 @@
 name := """com.osbsg.api"""
 
-version := "1.0-SNAPSHOT"
+version := "1.1-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean).dependsOn(core, user).aggregate(core, user)
 lazy val core = (project in file("modules/core")).enablePlugins(PlayJava, PlayEbean)
@@ -13,7 +13,11 @@ libraryDependencies ++= Seq(
   javaJdbc,
   cache,
   javaWs,
-  "mysql" % "mysql-connector-java" % "6.0.5"
+  filters,
+  "mysql" % "mysql-connector-java" % "6.0.5",
+  "com.typesafe.play" % "play-mailer_2.11" % "5.0.0",
+  "org.seleniumhq.selenium" % "selenium-firefox-driver" % "3.0.1",
+  "org.seleniumhq.selenium" % "selenium-server" % "3.0.1"
 )
 
 playEbeanModels in Compile := Seq("models.*")

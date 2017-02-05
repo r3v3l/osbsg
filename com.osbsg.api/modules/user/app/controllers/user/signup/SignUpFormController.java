@@ -23,6 +23,8 @@ public class SignUpFormController {
         @Constraints.MaxLength(255)
         public String confirmPassword;
 
+        public String termOfUse;
+
     }
 
 }

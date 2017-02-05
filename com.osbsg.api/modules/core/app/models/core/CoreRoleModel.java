@@ -26,6 +26,9 @@ public class CoreRoleModel extends Model {
     @ManyToMany(cascade = CascadeType.ALL)
     public List<CoreStatusModel> statuses;
 
+    @ManyToMany(mappedBy="statuses")
+    public List<CoreUserModel> users;
+
     @Column(nullable = false)
     @Constraints.Required
     @Formats.DateTime(pattern = "yyyy/mm-dd")
@@ -35,9 +38,6 @@ public class CoreRoleModel extends Model {
     @Constraints.Required
     @Formats.DateTime(pattern = "yyyy/mm-dd")
     public Date updateDate;
-
-    @ManyToMany(mappedBy="statuses")
-    public List<CoreUserModel> users;
 
     public Finder<Long, CoreRoleModel> find = new Finder<Long, CoreRoleModel>(Long.class, CoreRoleModel.class);
 

@@ -9,7 +9,9 @@ libraryDependencies ++= Seq (
   javaJdbc,
   cache,
   javaWs,
-  "mysql" % "mysql-connector-java" % "6.0.5"
+  filters,
+  "mysql" % "mysql-connector-java" % "6.0.5",
+  "com.typesafe.play" % "play-mailer_2.11" % "5.0.0"
 )
 
 playEbeanModels in Compile := Seq("models.core.*")

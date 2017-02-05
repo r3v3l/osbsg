@@ -1,3 +1,4 @@
-POST    /signIn             controllers.user.signin.SignInController.signIn
-POST    /signUp             controllers.user.signup.SignUpController.signUp
-GET /assets/*file           controllers.Assets.at(path="/public/lib/myadmin", file)
+POST    /api/signIn             controllers.user.api.signin.SignInController.signIn
+POST    /api/signUp             controllers.user.api.signup.SignUpController.signUp
+POST    /api/forgot             controllers.user.api.forgot.ForgotController.forgot
+GET /assets/*file           controllers.Assets.at(path="/public", file)

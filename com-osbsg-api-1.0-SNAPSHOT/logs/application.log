@@ -1,31 +1,9 @@
-2017-01-31 10:34:33,599 [INFO] from application in main - Creating Pool for datasource 'default'
-2017-01-31 10:34:33,911 [INFO] from play.api.db.DefaultDBApi in main - Database [default] connected at jdbc:mysql://localhost:3306/osbsg?useSSL=false
-2017-01-31 10:34:36,236 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - The application secret has not been set, and we are in prod mode. Your application is not secure.
-2017-01-31 10:34:36,238 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - To set the application secret, please read http://playframework.com/documentation/latest/ApplicationSecret
-2017-01-31 10:34:36,248 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - The application secret has not been set, and we are in prod mode. Your application is not secure.
-2017-01-31 10:34:36,248 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - To set the application secret, please read http://playframework.com/documentation/latest/ApplicationSecret
-2017-01-31 10:34:36,249 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - The application secret has not been set, and we are in prod mode. Your application is not secure.
-2017-01-31 10:34:36,249 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - To set the application secret, please read http://playframework.com/documentation/latest/ApplicationSecret
-2017-01-31 10:34:36,446 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - The application secret has not been set, and we are in prod mode. Your application is not secure.
-2017-01-31 10:34:36,447 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - To set the application secret, please read http://playframework.com/documentation/latest/ApplicationSecret
-2017-01-31 10:34:36,447 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - The application secret has not been set, and we are in prod mode. Your application is not secure.
-2017-01-31 10:34:36,448 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - To set the application secret, please read http://playframework.com/documentation/latest/ApplicationSecret
-2017-01-31 10:34:36,448 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - The application secret has not been set, and we are in prod mode. Your application is not secure.
-2017-01-31 10:34:36,449 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - To set the application secret, please read http://playframework.com/documentation/latest/ApplicationSecret
-2017-01-31 10:34:36,451 [INFO] from application in main - ApplicationTimer demo: Starting application at 2017-01-31T09:34:36.449Z
-2017-01-31 10:34:36,453 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - The application secret has not been set, and we are in prod mode. Your application is not secure.
-2017-01-31 10:34:36,453 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - To set the application secret, please read http://playframework.com/documentation/latest/ApplicationSecret
-2017-01-31 10:34:36,454 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - The application secret has not been set, and we are in prod mode. Your application is not secure.
-2017-01-31 10:34:36,454 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - To set the application secret, please read http://playframework.com/documentation/latest/ApplicationSecret
-2017-01-31 10:34:36,455 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - The application secret has not been set, and we are in prod mode. Your application is not secure.
-2017-01-31 10:34:36,455 [ERROR] from play.api.libs.crypto.CryptoConfigParser in main - To set the application secret, please read http://playframework.com/documentation/latest/ApplicationSecret
-2017-01-31 10:35:42,471 [INFO] from application in main - Creating Pool for datasource 'default'
-2017-01-31 10:35:42,804 [INFO] from play.api.db.DefaultDBApi in main - Database [default] connected at jdbc:mysql://localhost:3306/osbsg?useSSL=false
-2017-01-31 10:35:44,985 [INFO] from application in main - ApplicationTimer demo: Starting application at 2017-01-31T09:35:44.984Z
-2017-01-31 10:35:45,065 [INFO] from application in main - Application has started
-2017-01-31 10:35:45,070 [INFO] from play.api.Play in main - Application started (Prod)
-2017-01-31 10:35:45,269 [INFO] from play.core.server.NettyServer in main - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
-2017-01-31 15:53:55,213 [WARN] from com.zaxxer.hikari.pool.HikariPool in HikariPool-1 housekeeper - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=47m12s149ms538µs918ns).
-2017-01-31 15:53:56,428 [INFO] from application in Thread-9 - Application shutdown...
-2017-01-31 15:53:56,430 [INFO] from application in Thread-9 - ApplicationTimer demo: Stopping application at 2017-01-31T14:53:56.430Z after 19092s.
-2017-01-31 15:53:56,840 [INFO] from application in Thread-9 - Shutting down connection pool.
+2017-02-05 16:14:19,857 [INFO] from application in main - Creating Pool for datasource 'default'
+2017-02-05 16:14:20,836 [INFO] from play.api.db.DefaultDBApi in main - Database [default] connected at jdbc:mysql://localhost:3306/osbsg?useSSL=false
+2017-02-05 16:14:28,120 [INFO] from application in main - ApplicationTimer demo: Starting application at 2017-02-05T15:14:28.114Z
+2017-02-05 16:14:28,341 [INFO] from application in main - Application has started
+2017-02-05 16:14:28,367 [INFO] from play.api.Play in main - Application started (Prod)
+2017-02-05 16:14:28,806 [INFO] from play.core.server.NettyServer in main - Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+2017-02-05 16:45:19,597 [INFO] from application in Thread-9 - Application shutdown...
+2017-02-05 16:45:19,666 [INFO] from application in Thread-9 - ApplicationTimer demo: Stopping application at 2017-02-05T15:45:19.666Z after 1851s.
+2017-02-05 16:45:20,519 [INFO] from application in Thread-9 - Shutting down connection pool.
