@@ -10,7 +10,7 @@
 
                 <!-- Basic -->
             <meta charset="UTF-8">
-            <title>soc4you.com - Zarejestruj konto</title>
+            <title>soc4you.com - Zaloguj się</title>
             <meta name="keywords" content="seo, cms, crm, social media, company, firma" />
             <meta name="description" content="Pierwszy system do całościowej obsługi Twojego startupu.">
             <meta name="author" content="SilenceOnTheWire">
@@ -51,7 +51,7 @@
 
                     <div class="panel panel-sign">
                         <div class="panel-title-sign mt-xl text-right">
-                            <h2 class="title text-uppercase text-weight-bold m-none"><i class="fa fa-user mr-xs"></i> Zarejestruj konto</h2>
+                            <h2 class="title text-uppercase text-weight-bold m-none"><i class="fa fa-user mr-xs"></i> Zaloguj się</h2>
                         </div>
                         <div class="panel-body">
                             @if(danger != null){
@@ -63,7 +63,7 @@
                             @if(success != null){
                                 <p class="alert alert-success" role="alert" id="formSuccess">@success</p>
                             }
-                            <form action="/signUp" method="post" role="form">
+                            <form action="/signIn" method="post" role="form">
                                 @CSRF.formField
                                 <div class="form-group mb-lg">
                                     <label>Adres e-mail</label>
@@ -79,11 +79,11 @@
 
                                 <div class="form-group mb-lg">
                                     <div class="clearfix">
-                                        <label class="pull-left">Wprowadź hasło. Hasło musi zawierać minimum 12 znaków, jedną duża literę, jedną maą literę, jeden znak specjalny i jedną cyfrę.</label>
+                                        <label class="pull-left">Wprowadź hasło</label>
                                         <a href="/forgot" class="pull-right">Nie pamiętasz hasła?</a>
                                     </div>
                                     <div class="input-group input-group-icon">
-                                        <input name="password" id="userPassword" type="password" class="form-control input-lg" autocomplete="off" autofocus required pattern="(?=^.{12,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/>
+                                        <input name="password" id="userPassword" type="password" class="form-control input-lg" autocomplete="off" autofocus required />
                                         <span class="input-group-addon">
                                             <span class="icon icon-lg">
                                                 <i class="fa fa-lock"></i>
@@ -92,30 +92,16 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group mb-lg">
-                                    <div class="clearfix">
-                                        <label class="pull-left">Potwierdź hasło</label>
-                                    </div>
-                                    <div class="input-group input-group-icon">
-                                        <input name="confirmPassword" id="confirmPassword" type="password" class="form-control input-lg" autocomplete="off" autofocus required />
-                                        <span class="input-group-addon">
-                                            <span class="icon icon-lg">
-                                                <i class="fa fa-unlock"></i>
-                                            </span>
-                                        </span>
-                                    </div>
-                                </div>
-
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <div class="checkbox-custom checkbox-default">
-                                            <input id="termOfUse" name="termOfUse" type="checkbox" autocomplete="off" required autofocus/>
-                                            <label for="termOfUse">Akceptuję warunki użycia</label>
+                                            <input id="rememberMe" name="remeberMe" type="checkbox" autocomplete="on" autofocus/>
+                                            <label for="remeberMe">Zapamiętaj mnie</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-4 text-right">
-                                        <button type="submit" class="btn btn-primary hidden-xs">Zarejestruj się</button>
-                                        <button type="submit" id="submitSignUpForm" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Zarejestruj się</button>
+                                        <button type="submit" class="btn btn-primary hidden-xs">Zaloguj się</button>
+                                        <button type="submit" id="submitSignInForm" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Zaloguj się</button>
                                     </div>
                                 </div>
 
@@ -128,7 +114,7 @@
                                     <a class="btn btn-twitter mb-md ml-xs mr-xs">Połącz z <i class="fa fa-twitter"></i></a>
                                 </div>
 
-                                <p class="text-center">Posiadasz już konto? <a href="/signIn">Zaloguj się</a></p>
+                                <p class="text-center">Nie posiadasz konta? <a href="/signup">Tutaj możesz je założyć.</a></p>
 
                             </form>
                         </div>

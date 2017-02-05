@@ -44,7 +44,7 @@ public class SignUpControllerTest extends WithServer {
     public void allFieldsAreNullTest() throws Exception {
 
         int timeout = 5000;
-        String url = "http://localhost:" + this.testServer.port() + "/user/signUp";
+        String url = "http://localhost:" + this.testServer.port() + "/user/signIn";
         try (WSClient ws = WS.newClient(this.testServer.port())) {
             CompletionStage<WSResponse> stage = ws.url(url).setContentType("application/x-www-form-urlencoded").
                     post("email="+emptyEmail+"&password="+emptyPassword+"&confirmPassword="+emptyConfirmPassword);
@@ -60,7 +60,7 @@ public class SignUpControllerTest extends WithServer {
     @Test
     public void nullEmailTest() throws Exception {
         int timeout = 5000;
-        String url = "http://localhost:" + this.testServer.port() + "/user/signUp";
+        String url = "http://localhost:" + this.testServer.port() + "/user/signIn";
         try (WSClient ws = WS.newClient(this.testServer.port())) {
             CompletionStage<WSResponse> stage = ws.url(url).setContentType("application/x-www-form-urlencoded").
                     post("email="+emptyEmail+"&password="+password+"&confirmPassword="+confirmPassword);
@@ -75,7 +75,7 @@ public class SignUpControllerTest extends WithServer {
     @Test
     public void nullPasswordTest() throws Exception {
         int timeout = 5000;
-        String url = "http://localhost:" + this.testServer.port() + "/user/signUp";
+        String url = "http://localhost:" + this.testServer.port() + "/user/signIn";
         try (WSClient ws = WS.newClient(this.testServer.port())) {
             CompletionStage<WSResponse> stage = ws.url(url).setContentType("application/x-www-form-urlencoded").
                     post("email="+newEmail+"&password="+emptyPassword+"&confirmPassword="+confirmPassword);
@@ -90,7 +90,7 @@ public class SignUpControllerTest extends WithServer {
     @Test
     public void nullConfirmPasswordTest() throws Exception {
         int timeout = 5000;
-        String url = "http://localhost:" + this.testServer.port() + "/user/signUp";
+        String url = "http://localhost:" + this.testServer.port() + "/user/signIn";
         try (WSClient ws = WS.newClient(this.testServer.port())) {
             CompletionStage<WSResponse> stage = ws.url(url).setContentType("application/x-www-form-urlencoded").
                     post("email="+newEmail+"&password="+password+"&confirmPassword="+emptyPassword);
@@ -105,7 +105,7 @@ public class SignUpControllerTest extends WithServer {
     @Test
     public void badEmailTest() throws Exception {
         int timeout = 5000;
-        String url = "http://localhost:" + this.testServer.port() + "/user/signUp";
+        String url = "http://localhost:" + this.testServer.port() + "/user/signIn";
         try (WSClient ws = WS.newClient(this.testServer.port())) {
             CompletionStage<WSResponse> stage = ws.url(url).setContentType("application/x-www-form-urlencoded").
                     post("email="+invalidEmail+"&password="+password+"&confirmPassword="+confirmPassword);
@@ -120,7 +120,7 @@ public class SignUpControllerTest extends WithServer {
     @Test
     public void shortPasswordTest() throws Exception {
         int timeout = 5000;
-        String url = "http://localhost:" + this.testServer.port() + "/user/signUp";
+        String url = "http://localhost:" + this.testServer.port() + "/user/signIn";
         try (WSClient ws = WS.newClient(this.testServer.port())) {
             CompletionStage<WSResponse> stage = ws.url(url).setContentType("application/x-www-form-urlencoded").
                     post("email="+newEmail+"&password="+shortPassword+"&confirmPassword="+confirmPassword);
@@ -135,7 +135,7 @@ public class SignUpControllerTest extends WithServer {
     @Test
     public void passwordMismatchTest() throws Exception {
         int timeout = 5000;
-        String url = "http://localhost:" + this.testServer.port() + "/user/signUp";
+        String url = "http://localhost:" + this.testServer.port() + "/user/signIn";
         try (WSClient ws = WS.newClient(this.testServer.port())) {
             CompletionStage<WSResponse> stage = ws.url(url).setContentType("application/x-www-form-urlencoded").
                     post("email="+newEmail+"&password="+password+"&confirmPassword="+badConfirmPassword);
@@ -150,7 +150,7 @@ public class SignUpControllerTest extends WithServer {
     @Test
     public void existsEmailTest() throws Exception {
         int timeout = 5000;
-        String url = "http://localhost:" + this.testServer.port() + "/user/signUp";
+        String url = "http://localhost:" + this.testServer.port() + "/user/signIn";
         try (WSClient ws = WS.newClient(this.testServer.port())) {
             CompletionStage<WSResponse> stage = ws.url(url).setContentType("application/x-www-form-urlencoded").
                     post("email="+existsEmail+"&password="+password+"&confirmPassword="+confirmPassword);
@@ -165,7 +165,7 @@ public class SignUpControllerTest extends WithServer {
     @Test
     public void accountCreatedTest() throws Exception {
         int timeout = 5000;
-        String url = "http://localhost:" + this.testServer.port() + "/user/signUp";
+        String url = "http://localhost:" + this.testServer.port() + "/user/signIn";
         try (WSClient ws = WS.newClient(this.testServer.port())) {
             CompletionStage<WSResponse> stage = ws.url(url).setContentType("application/x-www-form-urlencoded").
                     post("email="+newEmail+"&password="+password+"&confirmPassword="+confirmPassword);

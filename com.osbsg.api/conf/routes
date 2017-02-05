@@ -6,6 +6,8 @@
 GET     /                           controllers.HomeController.index
 GET     /signUp                     controllers.user.SignUpController.signUp
 POST    /signUp                     controllers.user.SignUpController.createUser
+GET     /signIn                     controllers.user.SignInController.sign
+POST    /signIn                     controllers.user.SignInController.auth
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
